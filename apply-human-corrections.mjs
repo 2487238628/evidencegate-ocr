@@ -2,7 +2,7 @@ import fs from "node:fs";
 import crypto from "node:crypto";
 
 const root = new URL(".", import.meta.url);
-const read = (path) => fs.readFileSync(new URL(path, root), "utf8").replace(/^\uFEFF/, "");
+const read = (path) => fs.readFileSync(new URL(path, root), "utf8").replace(/^\uFEFF/, "").replace(/\r\n/g, "\n");
 const sourceText = read("evidence/image-suite-r1-candidates.json");
 const correctionsText = read("evidence/human-corrections-v0.2.json");
 const source = JSON.parse(sourceText);

@@ -88,6 +88,15 @@
       "step": "clean_clone_reproducibility",
       "attempt": 2,
       "entrypoint": "pending rerun after normalization",
+      "status": "FAILED_REFERENCE_BASELINE",
+      "duration_ms": 3416,
+      "output": "Normalization worked and reproduced the original frozen hashes, but the verifier compared against mistakenly replaced raw CRLF hashes.",
+      "manual_correction": "Restored the original normalized SHA-256 baselines."
+    },
+    {
+      "step": "clean_clone_reproducibility",
+      "attempt": 3,
+      "entrypoint": "pending final clean clone after restoring normalized baselines",
       "status": "PENDING",
       "duration_ms": null,
       "output": null,
@@ -102,9 +111,9 @@
     "human_corrections_replayed": 3,
     "skill_validation": "PASS",
     "secret_scan": "PASS",
-    "final_status": "PENDING_CLEAN_RERUN"
+    "final_status": "PENDING_FINAL_CLEAN_RERUN"
   },
-  "failures": 5,
-  "manual_corrections": 5,
+  "failures": 6,
+  "manual_corrections": 6,
   "boundary": "This validation covers frozen deterministic cases and five GPT-image-2 synthetic documents. It does not prove production OCR accuracy, SLA, ROI or permission to approve, pay or write ERP state."
 }

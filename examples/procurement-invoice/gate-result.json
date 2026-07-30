@@ -1,0 +1,149 @@
+{
+  "gate_version": "0.2.0",
+  "schema_id": "procurement-invoice-v1",
+  "status": "ACCEPT_CANDIDATE",
+  "model": null,
+  "usage": null,
+  "contract_errors": [],
+  "business_rule_errors": [],
+  "expected_mismatches": [],
+  "fields": {
+    "invoice_number": {
+      "value": "SYN-PO-2026-001",
+      "source": "model_output",
+      "locator": null,
+      "confidence": null,
+      "contract_errors": [],
+      "business_rule_errors": [],
+      "expected_mismatches": [],
+      "human_correction": null,
+      "final_status": "CANDIDATE"
+    },
+    "invoice_date": {
+      "value": "2026-07-22",
+      "source": "model_output",
+      "locator": null,
+      "confidence": null,
+      "contract_errors": [],
+      "business_rule_errors": [],
+      "expected_mismatches": [],
+      "human_correction": null,
+      "final_status": "CANDIDATE"
+    },
+    "supplier": {
+      "value": "云杉测试材料有限公司",
+      "source": "model_output",
+      "locator": null,
+      "confidence": null,
+      "contract_errors": [],
+      "business_rule_errors": [],
+      "expected_mismatches": [],
+      "human_correction": null,
+      "final_status": "CANDIDATE"
+    },
+    "buyer": {
+      "value": "星桥测试制造有限公司",
+      "source": "model_output",
+      "locator": null,
+      "confidence": null,
+      "contract_errors": [],
+      "business_rule_errors": [],
+      "expected_mismatches": [],
+      "human_correction": null,
+      "final_status": "CANDIDATE"
+    },
+    "currency": {
+      "value": "CNY",
+      "source": "model_output",
+      "locator": null,
+      "confidence": null,
+      "contract_errors": [],
+      "business_rule_errors": [],
+      "expected_mismatches": [],
+      "human_correction": null,
+      "final_status": "CANDIDATE"
+    },
+    "amount_excluding_tax": {
+      "value": 1000,
+      "source": "model_output",
+      "locator": null,
+      "confidence": null,
+      "contract_errors": [],
+      "business_rule_errors": [],
+      "expected_mismatches": [],
+      "human_correction": null,
+      "final_status": "CANDIDATE"
+    },
+    "tax_amount": {
+      "value": 130,
+      "source": "model_output",
+      "locator": null,
+      "confidence": null,
+      "contract_errors": [],
+      "business_rule_errors": [],
+      "expected_mismatches": [],
+      "human_correction": null,
+      "final_status": "CANDIDATE"
+    },
+    "total_amount": {
+      "value": 1130,
+      "source": "model_output",
+      "locator": {
+        "page": 1,
+        "bbox": [
+          0.62,
+          0.71,
+          0.84,
+          0.77
+        ]
+      },
+      "confidence": null,
+      "contract_errors": [],
+      "business_rule_errors": [],
+      "expected_mismatches": [],
+      "human_correction": null,
+      "final_status": "CANDIDATE"
+    },
+    "po_number": {
+      "value": "PO-SYN-0001",
+      "source": "model_output",
+      "locator": null,
+      "confidence": null,
+      "contract_errors": [],
+      "business_rule_errors": [],
+      "expected_mismatches": [],
+      "human_correction": null,
+      "final_status": "CANDIDATE"
+    },
+    "synthetic_labels": {
+      "value": [
+        "合成测试，非真实采购发票"
+      ],
+      "source": "model_output",
+      "locator": null,
+      "confidence": null,
+      "contract_errors": [],
+      "business_rule_errors": [],
+      "expected_mismatches": [],
+      "human_correction": null,
+      "final_status": "CANDIDATE"
+    },
+    "uncertainties": {
+      "value": [],
+      "source": "model_output",
+      "locator": null,
+      "confidence": null,
+      "contract_errors": [],
+      "business_rule_errors": [],
+      "expected_mismatches": [],
+      "human_correction": null,
+      "final_status": "CANDIDATE"
+    }
+  },
+  "human_required": true,
+  "erp_write_allowed": false,
+  "validator_duration_ms": 0.3166,
+  "candidate_sha256": "1a206db313e628073590d3f609072405a381b8a00251277725309b4ebbb64996",
+  "schema_sha256": "54c880778a5a11c5fb383e57eabde3eecc1e527bf154d258674ffcf47216c60e"
+}
+

@@ -1,218 +1,98 @@
-import fs from "node:fs";
-import crypto from "node:crypto";
+import { evaluate as evaluateBase } from "./evidence-gate-base.mjs";
 
-const args = Object.fromEntries(
-  process.argv.slice(2).reduce((pairs, value, index, all) => {
-    if (value.startsWith("--")) pairs.push([value.slice(2), all[index + 1]]);
-    return pairs;
-  }, [])
-);
-
-const readText = (path) => fs.readFileSync(path, "utf8").replace(/^\uFEFF/, "");
-const sha256 = (text) => crypto.createHash("sha256").update(text).digest("hex");
-const error = (code, message, field = null) => ({ code, field, message });
-
-function parseCandidate(raw, contractErrors) {
-  let text = raw.trim();
-  if (text.startsWith("```")) {
-    contractErrors.push(error("MARKDOWN_WRAPPER", "Candidate output is wrapped in Markdown."));
-    text = text.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "");
-  }
-
-  let parsed;
-  try {
-    parsed = JSON.parse(text);
-  } catch {
-    contractErrors.push(error("INVALID_JSON", "Candidate output is not valid JSON."));
-    return { fields: {}, evidence: {}, meta: {} };
-  }
-
-  const content = parsed?.choices?.[0]?.message?.content;
-  if (typeof content === "string") {
-    const nested = parseCandidate(content, contractErrors);
-    nested.meta = { model: parsed.model ?? null, usage: parsed.usage ?? null };
-    return nested;
-  }
-
-  if (!parsed || Array.isArray(parsed) || typeof parsed !== "object") {
-    contractErrors.push(error("ROOT_NOT_OBJECT", "Candidate root must be a JSON object."));
-    return { fields: {}, evidence: {}, meta: {} };
-  }
-
-  if ("fields" in parsed) {
-    if (!parsed.fields || Array.isArray(parsed.fields) || typeof parsed.fields !== "object") {
-      contractErrors.push(error("FIELDS_NOT_OBJECT", "Envelope fields must be an object."));
-    }
-    return {
-      fields: parsed.fields && typeof parsed.fields === "object" && !Array.isArray(parsed.fields) ? parsed.fields : {},
-      evidence: parsed.evidence && typeof parsed.evidence === "object" && !Array.isArray(parsed.evidence) ? parsed.evidence : {},
-      meta: {}
-    };
-  }
-
-  return { fields: parsed, evidence: {}, meta: {} };
-}
-
-function typeMatches(value, spec) {
-  if (spec.type === "string") return typeof value === "string";
-  if (spec.type === "number") return typeof value === "number" && Number.isFinite(value);
-  if (spec.type === "integer") return Number.isInteger(value);
-  if (spec.type === "boolean") return typeof value === "boolean";
-  if (spec.type === "array") {
-    return Array.isArray(value) && (!spec.items || value.every((item) => typeof item === spec.items));
-  }
-  return false;
-}
-
-function validateEvidence(evidence, fieldNames, contractErrors) {
-  for (const [field, item] of Object.entries(evidence)) {
-    if (!fieldNames.includes(field)) {
-      contractErrors.push(error("UNKNOWN_EVIDENCE_FIELD", `Evidence references unknown field: ${field}.`, field));
-      continue;
-    }
-    if (!item || Array.isArray(item) || typeof item !== "object") {
-      contractErrors.push(error("EVIDENCE_NOT_OBJECT", "Field evidence must be an object.", field));
-      continue;
-    }
-    if (item.confidence != null && (typeof item.confidence !== "number" || item.confidence < 0 || item.confidence > 1)) {
-      contractErrors.push(error("INVALID_CONFIDENCE", "Confidence must be null or a number from 0 to 1.", field));
-    }
-  }
-}
+const baseRuleKinds = new Set(["date_order", "sum_equals", "array_contains_all"]);
+const issue = (code, message, field = null) => ({ code, field, message });
 
 export function evaluate({ candidateText, schema, expected = null }) {
   const started = process.hrtime.bigint();
-  const contractErrors = [];
-  const businessRuleErrors = [];
-  const expectedMismatches = [];
-  const parsed = parseCandidate(candidateText, contractErrors);
-  const fields = parsed.fields;
-  const fieldNames = Object.keys(schema.fields);
+  const baseSchema = { ...schema, rules: (schema.rules ?? []).filter((rule) => baseRuleKinds.has(rule.kind)) };
+  const result = evaluateBase({ candidateText, schema: baseSchema, expected });
+  const contract = [];
+  const business = [];
+  const values = Object.fromEntries(Object.entries(result.fields).map(([name, field]) => [name, field.value]));
 
   for (const [name, spec] of Object.entries(schema.fields)) {
-    if (!(name in fields) || fields[name] === null) {
-      if (spec.required) contractErrors.push(error("FIELD_REQUIRED", "Required field is missing or null.", name));
-      continue;
+    const value = values[name];
+    if (value == null) continue;
+    if (spec.pattern && typeof value === "string" && !new RegExp(spec.pattern).test(value)) {
+      contract.push(issue("FIELD_PATTERN", `Value does not match ${spec.pattern}.`, name));
     }
-    if (!typeMatches(fields[name], spec)) {
-      contractErrors.push(error("FIELD_TYPE", `Expected ${spec.type}.`, name));
+    if (typeof value === "number" && spec.minimum != null && value < spec.minimum) {
+      contract.push(issue("FIELD_MINIMUM", `Value must be at least ${spec.minimum}.`, name));
+    }
+    if (typeof value === "number" && spec.maximum != null && value > spec.maximum) {
+      contract.push(issue("FIELD_MAXIMUM", `Value must be at most ${spec.maximum}.`, name));
+    }
+
+    const locator = result.fields[name]?.locator;
+    if (locator != null) {
+      const pageValid = Number.isInteger(locator.page) && locator.page >= 1;
+      const bbox = locator.bbox;
+      const bboxValid = Array.isArray(bbox)
+        && bbox.length === 4
+        && bbox.every((number) => typeof number === "number" && number >= 0 && number <= 1)
+        && bbox[0] < bbox[2]
+        && bbox[1] < bbox[3];
+      if (!pageValid || !bboxValid) {
+        contract.push(issue("INVALID_LOCATOR", "Locator requires page >= 1 and normalized bbox [x1,y1,x2,y2].", name));
+      }
     }
   }
-
-  if (schema.additional_fields === "reject") {
-    for (const name of Object.keys(fields)) {
-      if (!fieldNames.includes(name)) contractErrors.push(error("UNKNOWN_FIELD", "Field is not declared in the schema.", name));
-    }
-  }
-
-  validateEvidence(parsed.evidence, fieldNames, contractErrors);
 
   for (const rule of schema.rules ?? []) {
-    if (rule.kind === "date_order") {
-      const before = fields[rule.before];
-      const after = fields[rule.after];
-      if (typeof before === "string" && typeof after === "string" && before >= after) {
-        businessRuleErrors.push(error("RULE_DATE_ORDER", `${rule.before} must be earlier than ${rule.after}.`, rule.before));
+    if (baseRuleKinds.has(rule.kind)) continue;
+    if (rule.kind === "array_empty") {
+      const value = values[rule.field];
+      if (Array.isArray(value) && value.length) business.push(issue("RULE_ARRAY_EMPTY", `${rule.field} is not empty.`, rule.field));
+    } else if (rule.kind === "array_unique") {
+      const value = values[rule.field];
+      if (Array.isArray(value) && new Set(value).size !== value.length) {
+        business.push(issue("RULE_ARRAY_UNIQUE", `${rule.field} contains duplicate values.`, rule.field));
       }
-    } else if (rule.kind === "sum_equals") {
-      const values = rule.fields.map((name) => fields[name]);
-      const target = fields[rule.target];
-      if (values.every((value) => typeof value === "number") && typeof target === "number") {
-        const delta = Math.abs(values.reduce((sum, value) => sum + value, 0) - target);
-        if (delta > (rule.tolerance ?? 0)) {
-          businessRuleErrors.push(error("RULE_SUM_EQUALS", `${rule.fields.join(" + ")} must equal ${rule.target}.`, rule.target));
+    } else if (rule.kind === "date_difference_equals") {
+      const before = Date.parse(values[rule.before]);
+      const after = Date.parse(values[rule.after]);
+      const target = values[rule.target];
+      if (Number.isFinite(before) && Number.isFinite(after) && Number.isInteger(target)) {
+        const days = (after - before) / 86400000;
+        if (days !== target) business.push(issue("RULE_DATE_DIFFERENCE", `${rule.target} must equal the date difference.`, rule.target));
+      }
+    } else if (rule.kind === "percent_applied") {
+      const base = values[rule.base];
+      const rateText = values[rule.rate];
+      const target = values[rule.target];
+      const rate = typeof rateText === "string" ? Number.parseFloat(rateText) / 100 : NaN;
+      if (typeof base === "number" && Number.isFinite(rate) && typeof target === "number") {
+        if (Math.abs(base * rate - target) > (rule.tolerance ?? 0)) {
+          business.push(issue("RULE_PERCENT_APPLIED", `${rule.base} × ${rule.rate} must equal ${rule.target}.`, rule.target));
         }
       }
-    } else if (rule.kind === "array_contains_all") {
-      const actual = fields[rule.field];
-      if (Array.isArray(actual)) {
-        const missing = rule.values.filter((value) => !actual.some((item) => item.includes(value)));
-        if (missing.length) {
-          businessRuleErrors.push(error("RULE_ARRAY_CONTAINS_ALL", `Missing required evidence labels: ${missing.join(", ")}.`, rule.field));
-        }
+    } else if (rule.kind === "fields_not_equal") {
+      if (values[rule.left] != null && values[rule.left] === values[rule.right]) {
+        business.push(issue("RULE_FIELDS_NOT_EQUAL", `${rule.left} and ${rule.right} must differ.`, rule.right));
       }
     } else {
-      contractErrors.push(error("UNKNOWN_RULE", `Unsupported rule kind: ${rule.kind}.`));
+      contract.push(issue("UNKNOWN_RULE", `Unsupported rule kind: ${rule.kind}.`));
     }
   }
 
-  if (expected) {
-    for (const name of expected.exact_fields ?? []) {
-      if (JSON.stringify(fields[name]) !== JSON.stringify(expected.expected_fields?.[name])) {
-        expectedMismatches.push({
-          code: "EXPECTED_MISMATCH",
-          field: name,
-          expected: expected.expected_fields?.[name] ?? null,
-          actual: fields[name] ?? null
-        });
-      }
-    }
+  result.contract_errors.push(...contract);
+  result.business_rule_errors.push(...business);
+  for (const [name, field] of Object.entries(result.fields)) {
+    field.contract_errors.push(...contract.filter((item) => item.field === name));
+    field.business_rule_errors.push(...business.filter((item) => item.field === name));
+    field.final_status = field.contract_errors.length
+      ? "INVALID"
+      : field.business_rule_errors.length || field.expected_mismatches.length
+        ? "NEEDS_REVIEW"
+        : "CANDIDATE";
   }
-
-  const status = contractErrors.length
+  result.status = result.contract_errors.length
     ? "MODEL_OUTPUT_INVALID"
-    : businessRuleErrors.length || expectedMismatches.length
+    : result.business_rule_errors.length || result.expected_mismatches.length
       ? "HUMAN_REVIEW"
       : "ACCEPT_CANDIDATE";
-
-  const fieldEnvelope = Object.fromEntries(fieldNames.map((name) => {
-    const fieldContract = contractErrors.filter((item) => item.field === name);
-    const fieldRules = businessRuleErrors.filter((item) => item.field === name);
-    const fieldExpected = expectedMismatches.filter((item) => item.field === name);
-    const evidence = parsed.evidence[name] ?? {};
-    return [name, {
-      value: name in fields ? fields[name] : null,
-      source: "model_output",
-      locator: evidence.locator ?? null,
-      confidence: evidence.confidence ?? null,
-      contract_errors: fieldContract,
-      business_rule_errors: fieldRules,
-      expected_mismatches: fieldExpected,
-      human_correction: null,
-      final_status: fieldContract.length ? "INVALID" : fieldRules.length || fieldExpected.length ? "NEEDS_REVIEW" : "CANDIDATE"
-    }];
-  }));
-
-  return {
-    gate_version: "0.2.0",
-    schema_id: schema.schema_id,
-    status,
-    model: parsed.meta.model ?? null,
-    usage: parsed.meta.usage ?? null,
-    contract_errors: contractErrors,
-    business_rule_errors: businessRuleErrors,
-    expected_mismatches: expectedMismatches,
-    fields: fieldEnvelope,
-    human_required: schema.safety?.human_required !== false,
-    erp_write_allowed: schema.safety?.erp_write_allowed === true,
-    validator_duration_ms: Number(process.hrtime.bigint() - started) / 1e6
-  };
+  result.gate_version = "0.2.0";
+  result.validator_duration_ms = Number(process.hrtime.bigint() - started) / 1e6;
+  return result;
 }
-
-function main() {
-  if (!args.candidate || !args.schema) {
-    throw new Error("Usage: node evidence-gate.mjs --candidate <file> --schema <file> [--expected <file>] [--output <file>]");
-  }
-  const candidateText = readText(args.candidate);
-  const schemaText = readText(args.schema);
-  const schema = JSON.parse(schemaText);
-  const expected = args.expected ? JSON.parse(readText(args.expected)) : null;
-  const result = {
-    ...evaluate({ candidateText, schema, expected }),
-    candidate_sha256: sha256(candidateText),
-    schema_sha256: sha256(schemaText)
-  };
-  const json = JSON.stringify(result, null, 2);
-  if (args.output) fs.writeFileSync(args.output, `${json}\n`, "utf8");
-  process.stdout.write(`${json}\n`);
-}
-
-if (import.meta.url === `file:///${process.argv[1].replaceAll("\\", "/")}`) {
-  try {
-    main();
-  } catch (err) {
-    process.stderr.write(`${err.message}\n`);
-    process.exit(2);
-  }
-}
-

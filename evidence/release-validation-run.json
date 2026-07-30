@@ -58,6 +58,16 @@
     {
       "step": "release_verifier",
       "attempt": 1,
+      "entrypoint": ".\\verify-release.ps1",
+      "status": "FAILED_BEFORE_VERIFIER",
+      "duration_ms": null,
+      "duration_status": "NOT_SEPARATELY_MEASURED",
+      "output": "PowerShell execution policy blocked direct script execution; no release assertion started.",
+      "manual_correction": "Invoked the same script with powershell.exe -NoProfile -ExecutionPolicy Bypass -File."
+    },
+    {
+      "step": "release_verifier",
+      "attempt": 2,
       "entrypoint": "verify-release.ps1",
       "status": "PASS",
       "duration_ms": null,
@@ -76,7 +86,7 @@
     "secret_scan": "PASS",
     "final_status": "PASS"
   },
-  "failures": 3,
-  "manual_corrections": 3,
+  "failures": 4,
+  "manual_corrections": 4,
   "boundary": "This validation covers frozen deterministic cases and five GPT-image-2 synthetic documents. It does not prove production OCR accuracy, SLA, ROI or permission to approve, pay or write ERP state."
 }

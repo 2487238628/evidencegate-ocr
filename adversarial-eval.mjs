@@ -3,7 +3,7 @@ import crypto from "node:crypto";
 import { evaluate } from "./evidence-gate-v0.2.0.mjs";
 
 const root = new URL(".", import.meta.url);
-const read = (path) => fs.readFileSync(new URL(path, root), "utf8").replace(/^\uFEFF/, "");
+const read = (path) => fs.readFileSync(new URL(path, root), "utf8").replace(/^\uFEFF/, "").replace(/\r\n/g, "\n");
 const schema = JSON.parse(read("evidence-schema-v0.2.0.json"));
 const testSetText = read("tests/adversarial-cases.json");
 const testSet = JSON.parse(testSetText);

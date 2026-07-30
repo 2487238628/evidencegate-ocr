@@ -74,6 +74,24 @@
       "duration_status": "NOT_SEPARATELY_MEASURED",
       "output": "24 required files; hashes, JSON parse, Skill contract and secret scan passed.",
       "manual_correction": null
+    },
+    {
+      "step": "clean_clone_reproducibility",
+      "attempt": 1,
+      "entrypoint": "fresh GitHub branch clone + npm.cmd test",
+      "status": "FAILED_EVIDENCE_HASH",
+      "duration_ms": 3500,
+      "output": "All 43 routes and 3 correction replays passed, but raw-text SHA-256 values differed because line endings were platform-dependent.",
+      "manual_correction": "Normalized CRLF to LF before hashing and added release assertions against frozen hashes."
+    },
+    {
+      "step": "clean_clone_reproducibility",
+      "attempt": 2,
+      "entrypoint": "pending rerun after normalization",
+      "status": "PENDING",
+      "duration_ms": null,
+      "output": null,
+      "manual_correction": null
     }
   ],
   "outputs": {
@@ -84,9 +102,9 @@
     "human_corrections_replayed": 3,
     "skill_validation": "PASS",
     "secret_scan": "PASS",
-    "final_status": "PASS"
+    "final_status": "PENDING_CLEAN_RERUN"
   },
-  "failures": 4,
-  "manual_corrections": 4,
+  "failures": 5,
+  "manual_corrections": 5,
   "boundary": "This validation covers frozen deterministic cases and five GPT-image-2 synthetic documents. It does not prove production OCR accuracy, SLA, ROI or permission to approve, pay or write ERP state."
 }

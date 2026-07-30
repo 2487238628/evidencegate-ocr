@@ -96,10 +96,10 @@
     {
       "step": "clean_clone_reproducibility",
       "attempt": 3,
-      "entrypoint": "pending final clean clone after restoring normalized baselines",
-      "status": "PENDING",
-      "duration_ms": null,
-      "output": null,
+      "entrypoint": "fresh GitHub branch clone + npm.cmd test + verify-release.ps1 + official Skill validator",
+      "status": "PASS",
+      "duration_ms": 3879.6605,
+      "output": "43/43 deterministic cases, 3/3 correction replays, 26 release files, frozen normalized hashes, image hashes, JSON parse, secret scan, Skill contract, git diff and git object checks passed.",
       "manual_correction": null
     }
   ],
@@ -111,7 +111,8 @@
     "human_corrections_replayed": 3,
     "skill_validation": "PASS",
     "secret_scan": "PASS",
-    "final_status": "PENDING_FINAL_CLEAN_RERUN"
+    "final_status": "PASS",
+    "clean_clone": "PASS"
   },
   "failures": 6,
   "manual_corrections": 6,

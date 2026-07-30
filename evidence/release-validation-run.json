@@ -101,6 +101,24 @@
       "duration_ms": 3879.6605,
       "output": "43/43 deterministic cases, 3/3 correction replays, 26 release files, frozen normalized hashes, image hashes, JSON parse, secret scan, Skill contract, git diff and git object checks passed.",
       "manual_correction": null
+    },
+    {
+      "step": "ci_runtime_compatibility",
+      "attempt": 1,
+      "entrypoint": "GitHub Actions main run 30569186699",
+      "status": "WARN_DEPRECATED_RUNTIME",
+      "duration_ms": 24000,
+      "output": "Tests passed, but GitHub warned that actions/checkout@v4 and actions/setup-node@v4 used deprecated Node.js 20.",
+      "manual_correction": "Verified official latest stable releases and upgraded both actions to v7."
+    },
+    {
+      "step": "ci_runtime_compatibility",
+      "attempt": 2,
+      "entrypoint": "GitHub Actions main run 30569276578",
+      "status": "PASS",
+      "duration_ms": 27000,
+      "output": "checkout@v7, setup-node@v7, npm.cmd test and verify-release.ps1 all passed with no runtime deprecation annotation.",
+      "manual_correction": null
     }
   ],
   "outputs": {
@@ -112,9 +130,10 @@
     "skill_validation": "PASS",
     "secret_scan": "PASS",
     "final_status": "PASS",
-    "clean_clone": "PASS"
+    "clean_clone": "PASS",
+    "ci": "PASS"
   },
   "failures": 6,
-  "manual_corrections": 6,
+  "manual_corrections": 7,
   "boundary": "This validation covers frozen deterministic cases and five GPT-image-2 synthetic documents. It does not prove production OCR accuracy, SLA, ROI or permission to approve, pay or write ERP state."
 }

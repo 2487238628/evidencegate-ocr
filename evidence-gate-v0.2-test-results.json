@@ -1,0 +1,193 @@
+{
+  "test_set_id": "EVIDENCE-GATE-CONTRACT-001",
+  "gate_version": "0.2.0",
+  "test_set_sha256": "04fcd811435e45d5eaa01d4b61a05f00d598f4c871a31fd4f2e68729a9cf82a5",
+  "input_cases": 13,
+  "output_results": 13,
+  "passed": 13,
+  "failed": 0,
+  "manual_corrections": 0,
+  "duration_ms": 3.4249,
+  "results": [
+    {
+      "id": "valid-direct-candidate",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "passed": true
+    },
+    {
+      "id": "markdown-wrapper",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "MARKDOWN_WRAPPER",
+      "observed_codes": [
+        "MARKDOWN_WRAPPER",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "malformed-json",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "INVALID_JSON",
+      "observed_codes": [
+        "INVALID_JSON",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "FIELD_REQUIRED",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "missing-required-field",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "FIELD_REQUIRED",
+      "observed_codes": [
+        "FIELD_REQUIRED",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "number-returned-as-string",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "FIELD_TYPE",
+      "observed_codes": [
+        "FIELD_TYPE",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "unexpected-field",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "UNKNOWN_FIELD",
+      "observed_codes": [
+        "UNKNOWN_FIELD"
+      ],
+      "passed": true
+    },
+    {
+      "id": "null-required-field",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "FIELD_REQUIRED",
+      "observed_codes": [
+        "FIELD_REQUIRED",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "missing-safety-labels",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_ARRAY_CONTAINS_ALL",
+      "observed_codes": [
+        "RULE_ARRAY_CONTAINS_ALL"
+      ],
+      "passed": true
+    },
+    {
+      "id": "amount-arithmetic-conflict",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_SUM_EQUALS",
+      "observed_codes": [
+        "RULE_SUM_EQUALS",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "date-order-conflict",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_DATE_ORDER",
+      "observed_codes": [
+        "RULE_DATE_ORDER"
+      ],
+      "passed": true
+    },
+    {
+      "id": "frozen-field-mismatch",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "EXPECTED_MISMATCH",
+      "observed_codes": [
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "valid-evidence-envelope",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "passed": true
+    },
+    {
+      "id": "invalid-confidence",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "INVALID_CONFIDENCE",
+      "observed_codes": [
+        "INVALID_CONFIDENCE"
+      ],
+      "passed": true
+    }
+  ],
+  "evidence_boundary": "This deterministic test set verifies gate routing, not OCR or production accuracy."
+}
+

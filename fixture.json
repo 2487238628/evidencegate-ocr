@@ -1,0 +1,41 @@
+{
+  "test_id": "BL-OCR-SYN-001",
+  "classification": "synthetic-non-sensitive",
+  "image_sha256": "6264ea9a2ec10d55f44941fc3670760990ff3a647315b3b3556ab75ee5ce7bfa",
+  "expected_fields": {
+    "document_title": "启衡精密 OCR 合成测试凭证",
+    "test_number": "QH-SYN-20260730-001",
+    "issue_date": "2026-07-18",
+    "buyer": "启衡精密测试有限公司",
+    "seller": "杭州云栖测试酒店有限公司",
+    "city": "杭州",
+    "expense_type": "住宿费",
+    "check_in_date": "2026-07-17",
+    "check_out_date": "2026-07-18",
+    "quantity_nights": 1,
+    "amount_excluding_tax_yuan": 612.26,
+    "tax_rate": "6%",
+    "tax_amount_yuan": 36.74,
+    "total_amount_yuan": 649.0,
+    "purpose_text": "百炼OCR候选字段评测"
+  },
+  "required_visible_labels": [
+    "合成测试票据",
+    "仅供OCR评测",
+    "非真实发票"
+  ],
+  "exact_fields": [
+    "test_number",
+    "issue_date",
+    "buyer",
+    "seller",
+    "city",
+    "expense_type",
+    "quantity_nights",
+    "total_amount_yuan"
+  ],
+  "missing_or_conflicting_field_action": "REJECT_OCR_AND_ROUTE_TO_HUMAN",
+  "human_required": true,
+  "erp_write_allowed": false,
+  "production_accuracy_claim_allowed": false
+}

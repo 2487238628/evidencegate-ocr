@@ -1,0 +1,7 @@
+runs/
+.env
+*.log
+*.tmp
+synthetic-fixture-spec.json
+generation-prompt.txt
+bailian-run-001.json

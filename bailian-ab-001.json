@@ -1,0 +1,69 @@
+{
+  "test_id": "BL-OCR-AB-001",
+  "classification": "synthetic-non-sensitive",
+  "input_path_public": "examples/bailian-ocr/synthetic-voucher-gpt-image-2.png",
+  "input_sha256": "6264ea9a2ec10d55f44941fc3670760990ff3a647315b3b3556ab75ee5ce7bfa",
+  "controlled_variables": {
+    "same_image": true,
+    "same_prompt": true,
+    "same_output_fields": true
+  },
+  "runs": [
+    {
+      "model": "qwen3-vl-plus",
+      "duration_ms": 14047.621,
+      "exit_code": 0,
+      "usage": {"prompt_tokens": 1672, "completion_tokens": 244, "total_tokens": 1916},
+      "core_exact_fields": "8/8",
+      "json_without_markdown": true,
+      "numeric_field_types_valid": true,
+      "synthetic_label_detected": true,
+      "observed_issues": []
+    },
+    {
+      "model": "qwen3.5-ocr",
+      "duration_ms": 13734.541,
+      "exit_code": 0,
+      "usage": {"prompt_tokens": 1673, "completion_tokens": 245, "total_tokens": 1918},
+      "core_exact_fields": "8/8",
+      "json_without_markdown": false,
+      "numeric_field_types_valid": false,
+      "synthetic_label_detected": false,
+      "observed_issues": [
+        "Wrapped output in a Markdown code fence despite the prompt.",
+        "Returned quantity and amounts as strings.",
+        "Returned empty synthetic_labels and uncertainties strings."
+      ]
+    },
+    {
+      "model": "qwen3.6-flash",
+      "duration_ms": 20194.947,
+      "exit_code": 0,
+      "usage": {"prompt_tokens": 1671, "completion_tokens": 890, "total_tokens": 2561, "reasoning_tokens": 649},
+      "core_exact_fields": "8/8",
+      "json_without_markdown": false,
+      "numeric_field_types_valid": false,
+      "synthetic_label_detected": true,
+      "observed_issues": [
+        "Wrapped output in a Markdown code fence despite the prompt.",
+        "Returned quantity_nights as a string.",
+        "Duplicated the same synthetic label.",
+        "Produced unnecessary reasoning tokens for a transcription task."
+      ]
+    }
+  ],
+  "failed_or_unverified_attempts": [
+    {
+      "attempt": "Run qwen3.5-ocr and qwen3.6-flash in one batch shell loop.",
+      "observed_output": "",
+      "status": "UNVERIFIED"
+    }
+  ],
+  "manual_corrections": [
+    "Re-ran each candidate sequentially after the batch orchestration returned no inspectable output."
+  ],
+  "decision": "Keep qwen3-vl-plus as the provisional baseline for the next frozen evaluation set; do not infer production superiority from one synthetic image.",
+  "human_required": true,
+  "erp_write_allowed": false,
+  "production_accuracy_claim_allowed": false
+}

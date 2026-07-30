@@ -1,0 +1,39 @@
+{
+  "test_set_id": "EVIDENCE-GATE-CONTRACT-001",
+  "purpose": "Contract, rule and routing tests. These cases do not measure OCR accuracy.",
+  "base_candidate": {
+    "document_title": "启衡精密 OCR 合成测试凭证",
+    "test_number": "QH-SYN-20260730-001",
+    "issue_date": "2026-07-18",
+    "buyer": "启衡精密测试有限公司",
+    "seller": "杭州云栖测试酒店有限公司",
+    "city": "杭州",
+    "expense_type": "住宿费",
+    "check_in_date": "2026-07-17",
+    "check_out_date": "2026-07-18",
+    "quantity_nights": 1,
+    "amount_excluding_tax_yuan": 612.26,
+    "tax_rate": "6%",
+    "tax_amount_yuan": 36.74,
+    "total_amount_yuan": 649,
+    "purpose_text": "百炼OCR候选字段评测",
+    "synthetic_labels": ["合成测试票据", "仅供OCR评测", "非真实发票"],
+    "uncertainties": []
+  },
+  "cases": [
+    { "id": "valid-direct-candidate", "expected_status": "ACCEPT_CANDIDATE" },
+    { "id": "markdown-wrapper", "raw": "```json\n{\"test_number\":\"QH-SYN-20260730-001\"}\n```", "expected_status": "MODEL_OUTPUT_INVALID", "expected_code": "MARKDOWN_WRAPPER" },
+    { "id": "malformed-json", "raw": "{\"test_number\":", "expected_status": "MODEL_OUTPUT_INVALID", "expected_code": "INVALID_JSON" },
+    { "id": "missing-required-field", "remove": ["seller"], "expected_status": "MODEL_OUTPUT_INVALID", "expected_code": "FIELD_REQUIRED" },
+    { "id": "number-returned-as-string", "changes": { "quantity_nights": "1" }, "expected_status": "MODEL_OUTPUT_INVALID", "expected_code": "FIELD_TYPE" },
+    { "id": "unexpected-field", "changes": { "approval_result": "PASS" }, "expected_status": "MODEL_OUTPUT_INVALID", "expected_code": "UNKNOWN_FIELD" },
+    { "id": "null-required-field", "changes": { "buyer": null }, "expected_status": "MODEL_OUTPUT_INVALID", "expected_code": "FIELD_REQUIRED" },
+    { "id": "missing-safety-labels", "changes": { "synthetic_labels": [] }, "expected_status": "HUMAN_REVIEW", "expected_code": "RULE_ARRAY_CONTAINS_ALL" },
+    { "id": "amount-arithmetic-conflict", "changes": { "total_amount_yuan": 650 }, "expected_status": "HUMAN_REVIEW", "expected_code": "RULE_SUM_EQUALS" },
+    { "id": "date-order-conflict", "changes": { "check_in_date": "2026-07-19" }, "expected_status": "HUMAN_REVIEW", "expected_code": "RULE_DATE_ORDER" },
+    { "id": "frozen-field-mismatch", "changes": { "test_number": "QH-SYN-WRONG" }, "expected_status": "HUMAN_REVIEW", "expected_code": "EXPECTED_MISMATCH" },
+    { "id": "valid-evidence-envelope", "envelope": true, "evidence": { "total_amount_yuan": { "locator": { "page": 1, "bbox": [0.61, 0.71, 0.82, 0.77] }, "confidence": 0.98 } }, "expected_status": "ACCEPT_CANDIDATE" },
+    { "id": "invalid-confidence", "envelope": true, "evidence": { "total_amount_yuan": { "confidence": 1.2 } }, "expected_status": "MODEL_OUTPUT_INVALID", "expected_code": "INVALID_CONFIDENCE" }
+  ]
+}
+

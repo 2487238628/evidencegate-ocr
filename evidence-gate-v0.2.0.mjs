@@ -1,4 +1,4 @@
-import { evaluate as evaluateBase } from "./evidence-gate.mjs";
+import { evaluate as evaluateBase } from "./evidence-gate-base.mjs";
 
 const baseRuleKinds = new Set(["date_order", "sum_equals", "array_contains_all"]);
 const issue = (code, message, field = null) => ({ code, field, message });

@@ -1,12 +1,12 @@
 $ErrorActionPreference = 'Stop'
 
 $required = @(
-  'README-RELEASE.md', 'LICENSE', 'SECURITY.md', 'package.json',
-  'evidence-schema-v0.2.0.json', 'evidence-gate-v0.2.0.mjs', 'evidence-gate-cli-v0.2.0.mjs',
+  'README.md', 'LICENSE', 'SECURITY.md', 'package.json',
+  'evidence-schema.json', 'evidence-gate-base.mjs', 'evidence-gate.mjs', 'evidence-gate-cli.mjs',
   'tests\adversarial-cases.json', 'adversarial-eval.mjs', 'adversarial-eval-v0.2-results.json',
   'apply-human-corrections.mjs', 'evidence\human-corrections-v0.2.json', 'evidence\human-correction-run-v0.2.json',
   'evidence\procurement-image-suite-three-rounds.json', 'evidence\image-suite-field-metrics.json',
-  'samples\image-generation-records.json',
+  'samples\image-generation-records.json', 'evidence\release-validation-run.json',
   'samples\images\procurement-clean-gpt-image-2.png',
   'samples\images\procurement-rotated-blur-gpt-image-2.png',
   'samples\images\procurement-stamp-overlap-gpt-image-2.png',

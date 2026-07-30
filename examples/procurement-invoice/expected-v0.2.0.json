@@ -1,0 +1,19 @@
+{
+  "test_id": "PROCUREMENT-SYN-IMAGE-SUITE-001",
+  "classification": "synthetic-non-sensitive",
+  "expected_fields": {
+    "invoice_number": "SYN-PO-2026-001",
+    "invoice_date": "2026-07-22",
+    "supplier": "云杉测试材料有限公司",
+    "buyer": "星桥测试制造有限公司",
+    "currency": "CNY",
+    "amount_excluding_tax": 1000,
+    "tax_amount": 130,
+    "total_amount": 1130,
+    "po_number": "PO-SYN-0001"
+  },
+  "exact_fields": ["invoice_number", "invoice_date", "supplier", "buyer", "currency", "amount_excluding_tax", "tax_amount", "total_amount", "po_number"],
+  "human_required": true,
+  "erp_write_allowed": false,
+  "production_accuracy_claim_allowed": false
+}

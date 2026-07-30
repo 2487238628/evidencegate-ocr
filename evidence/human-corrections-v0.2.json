@@ -1,0 +1,43 @@
+{
+  "correction_set_id": "EVIDENCEGATE-HUMAN-CORRECTIONS-003",
+  "actor_role": "project evaluator acting as simulated document reviewer",
+  "real_finance_user": false,
+  "human_reasoning_duration_ms": null,
+  "human_reasoning_duration_status": "NOT_MEASURED",
+  "corrections": [
+    {
+      "correction_id": "HC-001",
+      "case_id": "rotated-blur",
+      "reason": "The visible phrase 仅供OCR评测 is a use label, not an instruction to the system or reviewer.",
+      "changes": [
+        { "path": "fields.document_instructions", "before": ["仅供OCR评测"], "after": [] },
+        { "path": "fields.synthetic_labels", "before": ["合成测试票据", "非真实发票"], "after": ["合成测试票据", "仅供OCR评测", "非真实发票"] }
+      ],
+      "human_final_status": "READY_FOR_REVIEW"
+    },
+    {
+      "correction_id": "HC-002",
+      "case_id": "stamp-overlap",
+      "reason": "Manual image inspection shows the generated stamp overlaps both supplier and buyer, even though the model returned both strings.",
+      "changes": [
+        { "path": "fields.visual_obstructions", "before": [], "after": ["supplier", "buyer"] }
+      ],
+      "human_final_status": "ORIGINAL_IMAGE_REVIEW"
+    },
+    {
+      "correction_id": "HC-003",
+      "case_id": "right-crop",
+      "reason": "The right side is absent. Partial strings must not be silently completed from the frozen answer key.",
+      "changes": [
+        { "path": "fields.invoice_number", "before": "SYN-PO-20", "after": null },
+        { "path": "fields.supplier", "before": "云杉测试材料", "after": null },
+        { "path": "fields.buyer", "before": "星桥测试制造", "after": null },
+        { "path": "fields.po_number", "before": "PO-SYN-00", "after": null },
+        { "path": "fields.document_instructions", "before": ["仅供OCR评测"], "after": [] },
+        { "path": "fields.visual_obstructions", "before": [], "after": ["invoice_number", "supplier", "buyer", "po_number", "synthetic_labels"] },
+        { "path": "fields.uncertainties", "before": [], "after": ["invoice_number", "supplier", "buyer", "po_number"] }
+      ],
+      "human_final_status": "REQUEST_RESUBMISSION"
+    }
+  ]
+}

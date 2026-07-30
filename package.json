@@ -1,0 +1,12 @@
+{
+  "name": "evidencegate-ocr",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:gate": "node test-gate.mjs",
+    "test:adversarial": "node adversarial-eval.mjs",
+    "test:corrections": "node apply-human-corrections.mjs",
+    "test": "npm run test:gate && npm run test:adversarial && npm run test:corrections"
+  }
+}

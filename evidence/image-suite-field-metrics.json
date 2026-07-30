@@ -1,0 +1,45 @@
+{
+  "evidence_id": "PROCUREMENT-IMAGE-R3-FIELD-METRICS",
+  "suite_id": "PROCUREMENT-IMAGE-ADVERSARIAL-005-R3",
+  "classification": "synthetic-non-sensitive",
+  "input_images": 5,
+  "labeled_fields_per_image": 9,
+  "field_comparisons": 45,
+  "exact_field_matches": 41,
+  "exact_field_mismatches": 4,
+  "exact_field_match_rate": 0.9111111111111111,
+  "by_field": {
+    "invoice_number": { "passed": 4, "total": 5 },
+    "invoice_date": { "passed": 5, "total": 5 },
+    "supplier": { "passed": 4, "total": 5 },
+    "buyer": { "passed": 4, "total": 5 },
+    "currency": { "passed": 5, "total": 5 },
+    "amount_excluding_tax": { "passed": 5, "total": 5 },
+    "tax_amount": { "passed": 5, "total": 5 },
+    "total_amount": { "passed": 5, "total": 5 },
+    "po_number": { "passed": 4, "total": 5 }
+  },
+  "routing": {
+    "passed": 5,
+    "total": 5,
+    "dangerous_false_accepts": 0,
+    "unacceptable_cases": 3,
+    "dangerous_false_accept_rate": 0,
+    "overblocked_cases": 0,
+    "acceptable_cases": 2,
+    "overblock_rate": 0
+  },
+  "evidence_locator": {
+    "fields_with_model_locator": 0,
+    "labeled_fields": 45,
+    "coverage_rate": 0,
+    "interpretation": "The model did not return page or bounding-box evidence; the gate preserved locator as null."
+  },
+  "model_call_duration_ms": 31799.663,
+  "prompt_tokens": 8745,
+  "completion_tokens": 837,
+  "total_tokens": 9582,
+  "model_infrastructure_failures": 0,
+  "manual_corrections_applied": 3,
+  "evidence_boundary": "Field metrics cover five GPT-image-2 synthetic images and one model configuration only."
+}

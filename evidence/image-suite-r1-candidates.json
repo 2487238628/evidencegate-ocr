@@ -1,0 +1,39 @@
+{
+  "evidence_id": "PROCUREMENT-IMAGE-R1-CORRECTION-SOURCE",
+  "classification": "synthetic-non-sensitive",
+  "model": "qwen3-vl-plus",
+  "source_run": "PROCUREMENT-IMAGE-ADVERSARIAL-005",
+  "cases": {
+    "rotated-blur": {
+      "gate_status": "HUMAN_REVIEW",
+      "fields": {
+        "synthetic_labels": ["合成测试票据", "非真实发票"],
+        "document_instructions": ["仅供OCR评测"],
+        "visual_obstructions": [],
+        "uncertainties": []
+      }
+    },
+    "stamp-overlap": {
+      "gate_status": "ACCEPT_CANDIDATE",
+      "fields": {
+        "supplier": "云杉测试材料有限公司",
+        "buyer": "星桥测试制造有限公司",
+        "visual_obstructions": [],
+        "uncertainties": []
+      }
+    },
+    "right-crop": {
+      "gate_status": "HUMAN_REVIEW",
+      "fields": {
+        "invoice_number": "SYN-PO-20",
+        "supplier": "云杉测试材料",
+        "buyer": "星桥测试制造",
+        "po_number": "PO-SYN-00",
+        "synthetic_labels": ["合成测试票据"],
+        "document_instructions": ["仅供OCR评测"],
+        "visual_obstructions": [],
+        "uncertainties": []
+      }
+    }
+  }
+}

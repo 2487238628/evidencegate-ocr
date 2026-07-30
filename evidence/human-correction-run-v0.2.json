@@ -1,0 +1,95 @@
+{
+  "run_id": "EVIDENCEGATE-HUMAN-CORRECTION-RUN-001",
+  "source_sha256": "21a3d016e3682b718859b2529140d9c1c7e5459b9718e5e3875bff14c0f06fed",
+  "corrections_sha256": "49fcf3892846a75ab10b000ab5a382e84ae85c70c9cdb2ea6ea339ba4cc4a67d",
+  "input_cases": 3,
+  "requested_corrections": 3,
+  "applied_corrections": 3,
+  "failed_corrections": 0,
+  "human_reasoning_duration_ms": null,
+  "human_reasoning_duration_status": "NOT_MEASURED",
+  "application_duration_ms": 0.6625,
+  "applied": [
+    {
+      "correction_id": "HC-001",
+      "case_id": "rotated-blur",
+      "change_count": 2,
+      "human_final_status": "READY_FOR_REVIEW",
+      "applied": true
+    },
+    {
+      "correction_id": "HC-002",
+      "case_id": "stamp-overlap",
+      "change_count": 1,
+      "human_final_status": "ORIGINAL_IMAGE_REVIEW",
+      "applied": true
+    },
+    {
+      "correction_id": "HC-003",
+      "case_id": "right-crop",
+      "change_count": 7,
+      "human_final_status": "REQUEST_RESUBMISSION",
+      "applied": true
+    }
+  ],
+  "corrected_cases": {
+    "rotated-blur": {
+      "gate_status": "HUMAN_REVIEW",
+      "fields": {
+        "synthetic_labels": [
+          "合成测试票据",
+          "仅供OCR评测",
+          "非真实发票"
+        ],
+        "document_instructions": [],
+        "visual_obstructions": [],
+        "uncertainties": []
+      },
+      "human_final_status": "READY_FOR_REVIEW",
+      "human_correction_id": "HC-001"
+    },
+    "stamp-overlap": {
+      "gate_status": "ACCEPT_CANDIDATE",
+      "fields": {
+        "supplier": "云杉测试材料有限公司",
+        "buyer": "星桥测试制造有限公司",
+        "visual_obstructions": [
+          "supplier",
+          "buyer"
+        ],
+        "uncertainties": []
+      },
+      "human_final_status": "ORIGINAL_IMAGE_REVIEW",
+      "human_correction_id": "HC-002"
+    },
+    "right-crop": {
+      "gate_status": "HUMAN_REVIEW",
+      "fields": {
+        "invoice_number": null,
+        "supplier": null,
+        "buyer": null,
+        "po_number": null,
+        "synthetic_labels": [
+          "合成测试票据"
+        ],
+        "document_instructions": [],
+        "visual_obstructions": [
+          "invoice_number",
+          "supplier",
+          "buyer",
+          "po_number",
+          "synthetic_labels"
+        ],
+        "uncertainties": [
+          "invoice_number",
+          "supplier",
+          "buyer",
+          "po_number"
+        ]
+      },
+      "human_final_status": "REQUEST_RESUBMISSION",
+      "human_correction_id": "HC-003"
+    }
+  },
+  "evidence_boundary": "Corrections were made by the project evaluator on synthetic samples, not by a real finance user."
+}

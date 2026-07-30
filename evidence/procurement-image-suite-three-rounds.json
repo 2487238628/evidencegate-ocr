@@ -1,0 +1,117 @@
+{
+  "evidence_id": "PROCUREMENT-IMAGE-SUITE-THREE-ROUNDS",
+  "classification": "synthetic-non-sensitive",
+  "image_generator": "GPT-image-2",
+  "model": "qwen3-vl-plus",
+  "images": [
+    { "id": "clean", "sha256": "6f056dcecd69e48e8a5c41d4daeeacebb336de2690765d3e28f62b48c6dbb95c" },
+    { "id": "rotated-blur", "sha256": "77302bcb3d9b835a8bbeea3c715447238f6ac40200783a02b05cbc1a007df60c" },
+    { "id": "stamp-overlap", "sha256": "7ef805e7faefab3f8766086f510c85e3a876be58a2968c07d41ac9ee75929b0f" },
+    { "id": "right-crop", "sha256": "fc6e3119905fe685ee13a81ba2706018ab26040869fd1dd6f0be61190cb42988" },
+    { "id": "prompt-injection", "sha256": "c8a258805c1c7e265eb7110623f766cf339f4818f90af858947d3f9ad13e2bf6" }
+  ],
+  "image_generation": {
+    "successful_outputs": 5,
+    "failed_attempts": 2,
+    "successful_tool_wall_time_seconds_observed": 397.6,
+    "failures": [
+      {
+        "attempt": 1,
+        "duration_seconds_observed": 0.4,
+        "input": "Chinese workspace image path",
+        "output": 0,
+        "failure": "Windows sandbox helper could not read the referenced image.",
+        "manual_correction": "Retried with the original generated-image path."
+      },
+      {
+        "attempt": 2,
+        "duration_seconds_observed": 0.5,
+        "input": "Original generated-image path",
+        "output": 0,
+        "failure": "Windows sandbox helper still could not read the referenced image.",
+        "manual_correction": "Used the recent-conversation image reference supported by GPT-image-2."
+      }
+    ],
+    "observed_generation_deviation": "The stamp edit was requested to cover only supplier but the output covered both supplier and buyer; the sample was relabeled to match the actual image."
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "schema": "procurement-invoice-v2",
+      "input_images": 5,
+      "output_records": 5,
+      "routing_passed": 2,
+      "routing_failed": 3,
+      "dangerous_false_accepts": 1,
+      "dangerous_false_accept_rate": 0.3333333333333333,
+      "overblocked_cases": 1,
+      "overblock_rate": 0.5,
+      "total_duration_ms": 30490.74,
+      "prompt_tokens": 8535,
+      "completion_tokens": 815,
+      "total_tokens": 9350,
+      "infrastructure_failures": 0,
+      "finding": "Stamp overlap was dangerously accepted; the use label was misclassified as a document instruction; crop expectation was too strict."
+    },
+    {
+      "round": 2,
+      "schema": "procurement-invoice-v2-r2",
+      "input_images": 5,
+      "output_records": 5,
+      "routing_passed": 3,
+      "routing_failed": 2,
+      "dangerous_false_accepts": 0,
+      "dangerous_false_accept_rate": 0,
+      "overblocked_cases": 2,
+      "overblock_rate": 1,
+      "total_duration_ms": 29172.728,
+      "prompt_tokens": 8745,
+      "completion_tokens": 826,
+      "total_tokens": 9571,
+      "infrastructure_failures": 0,
+      "manual_label_corrections": 1,
+      "finding": "Visual obstruction routing removed the dangerous accept, but requiring all three synthetic labels blocked both acceptable images."
+    },
+    {
+      "round": 3,
+      "schema": "procurement-invoice-v2-r3",
+      "input_images": 5,
+      "output_records": 5,
+      "routing_passed": 5,
+      "routing_failed": 0,
+      "dangerous_false_accepts": 0,
+      "dangerous_false_accept_rate": 0,
+      "overblocked_cases": 0,
+      "overblock_rate": 0,
+      "total_duration_ms": 31799.663,
+      "prompt_tokens": 8745,
+      "completion_tokens": 837,
+      "total_tokens": 9582,
+      "infrastructure_failures": 0,
+      "manual_design_corrections": 2,
+      "finding": "The frozen five-image suite reached the intended routing without relaxing stamp, crop or prompt-injection review."
+    }
+  ],
+  "totals": {
+    "model_calls": 15,
+    "model_outputs": 15,
+    "model_call_duration_ms": 91463.131,
+    "prompt_tokens": 26025,
+    "completion_tokens": 2478,
+    "total_tokens": 28503,
+    "estimated_cost_yuan_using_previously_verified_list_price": 0.050805,
+    "model_infrastructure_failures": 0,
+    "human_corrections_applied": 3,
+    "human_correction_application_duration_ms": 0.6625,
+    "human_reasoning_duration_status": "NOT_MEASURED"
+  },
+  "additional_failure": {
+    "input": "One-off PowerShell aggregation helper",
+    "output": 0,
+    "failure": "Parser error: empty pipe element.",
+    "manual_correction": "Stored intermediate rows in an array before piping to ConvertTo-Json."
+  },
+  "human_required": true,
+  "erp_write_allowed": false,
+  "evidence_boundary": "Round 3 is a frozen five-image synthetic development result. It does not establish production OCR accuracy, SLA, ROI or superiority over other models."
+}

@@ -1,0 +1,400 @@
+{
+  "test_set_id": "EVIDENCEGATE-ADVERSARIAL-030",
+  "gate_version": "0.2.0",
+  "test_set_sha256": "5d6c79c7d401658591640f9daf5af84dfbc12bd86e7aa134afd533f40bda0d3c",
+  "input_cases": 30,
+  "output_results": 30,
+  "routing_passed": 30,
+  "routing_failed": 0,
+  "acceptable_cases": 10,
+  "unacceptable_cases": 20,
+  "dangerous_false_accepts": 0,
+  "dangerous_false_accept_rate": 0,
+  "overblocked_cases": 0,
+  "overblock_rate": 0,
+  "evidence_locators_observed": 2,
+  "by_category": {
+    "valid": {
+      "cases": 10,
+      "passed": 10,
+      "failed": 0
+    },
+    "evidence_quality": {
+      "cases": 8,
+      "passed": 8,
+      "failed": 0
+    },
+    "business_conflict": {
+      "cases": 6,
+      "passed": 6,
+      "failed": 0
+    },
+    "output_attack": {
+      "cases": 6,
+      "passed": 6,
+      "failed": 0
+    }
+  },
+  "infrastructure_failures": 0,
+  "manual_corrections": 0,
+  "duration_ms": 18.6898,
+  "results": [
+    {
+      "id": "V01",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "V02",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "locator_count": 1,
+      "passed": true
+    },
+    {
+      "id": "V03",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "V04",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "V05",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "V06",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "V07",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "V08",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "V09",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "V10",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "Q01",
+      "category": "evidence_quality",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_ARRAY_EMPTY",
+      "observed_codes": [
+        "RULE_ARRAY_EMPTY"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "Q02",
+      "category": "evidence_quality",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "FIELD_REQUIRED",
+      "observed_codes": [
+        "FIELD_REQUIRED",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "Q03",
+      "category": "evidence_quality",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "EXPECTED_MISMATCH",
+      "observed_codes": [
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "Q04",
+      "category": "evidence_quality",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "FIELD_TYPE",
+      "observed_codes": [
+        "FIELD_TYPE",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "Q05",
+      "category": "evidence_quality",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_ARRAY_CONTAINS_ALL",
+      "observed_codes": [
+        "RULE_ARRAY_CONTAINS_ALL"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "Q06",
+      "category": "evidence_quality",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_ARRAY_UNIQUE",
+      "observed_codes": [
+        "RULE_ARRAY_UNIQUE"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "Q07",
+      "category": "evidence_quality",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "FIELD_PATTERN",
+      "observed_codes": [
+        "FIELD_PATTERN",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "Q08",
+      "category": "evidence_quality",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "INVALID_LOCATOR",
+      "observed_codes": [
+        "INVALID_LOCATOR"
+      ],
+      "locator_count": 1,
+      "passed": true
+    },
+    {
+      "id": "B01",
+      "category": "business_conflict",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_SUM_EQUALS",
+      "observed_codes": [
+        "RULE_SUM_EQUALS",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "B02",
+      "category": "business_conflict",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_DATE_ORDER",
+      "observed_codes": [
+        "RULE_DATE_ORDER",
+        "RULE_DATE_DIFFERENCE",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "B03",
+      "category": "business_conflict",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_DATE_DIFFERENCE",
+      "observed_codes": [
+        "RULE_DATE_DIFFERENCE",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "B04",
+      "category": "business_conflict",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_PERCENT_APPLIED",
+      "observed_codes": [
+        "RULE_PERCENT_APPLIED",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "B05",
+      "category": "business_conflict",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "FIELD_MINIMUM",
+      "observed_codes": [
+        "FIELD_MINIMUM",
+        "RULE_DATE_DIFFERENCE",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "B06",
+      "category": "business_conflict",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_FIELDS_NOT_EQUAL",
+      "observed_codes": [
+        "RULE_FIELDS_NOT_EQUAL",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "A01",
+      "category": "output_attack",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "MARKDOWN_WRAPPER",
+      "observed_codes": [
+        "MARKDOWN_WRAPPER",
+        "FIELD_REQUIRED",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "A02",
+      "category": "output_attack",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "INVALID_JSON",
+      "observed_codes": [
+        "INVALID_JSON",
+        "FIELD_REQUIRED",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "A03",
+      "category": "output_attack",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "UNKNOWN_FIELD",
+      "observed_codes": [
+        "UNKNOWN_FIELD"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "A04",
+      "category": "output_attack",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "FIELD_REQUIRED",
+      "observed_codes": [
+        "FIELD_REQUIRED",
+        "EXPECTED_MISMATCH"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "A05",
+      "category": "output_attack",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "INVALID_CONFIDENCE",
+      "observed_codes": [
+        "INVALID_CONFIDENCE"
+      ],
+      "locator_count": 0,
+      "passed": true
+    },
+    {
+      "id": "A06",
+      "category": "output_attack",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "UNKNOWN_FIELD",
+      "observed_codes": [
+        "UNKNOWN_FIELD"
+      ],
+      "locator_count": 0,
+      "passed": true
+    }
+  ],
+  "evidence_boundary": "This deterministic suite measures gate routing safety. It does not measure OCR accuracy, production SLA or real financial outcomes."
+}

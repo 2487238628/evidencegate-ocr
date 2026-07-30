@@ -1,0 +1,82 @@
+{
+  "run_id": "release-validation-v0.2.0-20260731",
+  "timestamp_timezone": "Asia/Shanghai",
+  "inputs": {
+    "release": "v0.2.0",
+    "deterministic_cases": 43,
+    "synthetic_image_cases": 5,
+    "human_correction_events": 3,
+    "skill_path": "skills/evidencegate-ocr"
+  },
+  "attempts": [
+    {
+      "step": "skill_validation",
+      "attempt": 1,
+      "entrypoint": "system Python + quick_validate.py",
+      "status": "FAILED",
+      "duration_ms": 800,
+      "output": "ModuleNotFoundError: No module named 'yaml'",
+      "manual_correction": "Reused the bundled workspace Python that already includes PyYAML; no package was installed."
+    },
+    {
+      "step": "skill_validation",
+      "attempt": 2,
+      "entrypoint": "bundled workspace Python + quick_validate.py",
+      "status": "FAILED",
+      "duration_ms": 400,
+      "output": "UnicodeDecodeError under the Windows GBK default codec",
+      "manual_correction": "Reran the same official validator with Python UTF-8 mode enabled."
+    },
+    {
+      "step": "skill_validation",
+      "attempt": 3,
+      "entrypoint": "bundled workspace Python -X utf8 + quick_validate.py",
+      "status": "PASS",
+      "duration_ms": 400,
+      "output": "Skill is valid!",
+      "manual_correction": null
+    },
+    {
+      "step": "package_test",
+      "attempt": 1,
+      "entrypoint": "npm test",
+      "status": "FAILED_BEFORE_TESTS",
+      "duration_ms": null,
+      "duration_status": "NOT_SEPARATELY_MEASURED",
+      "output": "PowerShell execution policy blocked npm.ps1; no project test started.",
+      "manual_correction": "Used the Windows executable entrypoint npm.cmd without changing test logic."
+    },
+    {
+      "step": "package_test",
+      "attempt": 2,
+      "entrypoint": "npm.cmd test",
+      "status": "PASS",
+      "duration_ms": 4000,
+      "output": "13/13 base gate cases; 30/30 adversarial routes; 3/3 correction replays.",
+      "manual_correction": null
+    },
+    {
+      "step": "release_verifier",
+      "attempt": 1,
+      "entrypoint": "verify-release.ps1",
+      "status": "PASS",
+      "duration_ms": null,
+      "duration_status": "NOT_SEPARATELY_MEASURED",
+      "output": "24 required files; hashes, JSON parse, Skill contract and secret scan passed.",
+      "manual_correction": null
+    }
+  ],
+  "outputs": {
+    "base_gate_cases_passed": 13,
+    "adversarial_routes_passed": 30,
+    "dangerous_false_accepts": 0,
+    "overblocked_cases": 0,
+    "human_corrections_replayed": 3,
+    "skill_validation": "PASS",
+    "secret_scan": "PASS",
+    "final_status": "PASS"
+  },
+  "failures": 3,
+  "manual_corrections": 3,
+  "boundary": "This validation covers frozen deterministic cases and five GPT-image-2 synthetic documents. It does not prove production OCR accuracy, SLA, ROI or permission to approve, pay or write ERP state."
+}

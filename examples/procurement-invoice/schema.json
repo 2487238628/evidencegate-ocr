@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.2.0",
+  "schema_id": "procurement-invoice-v1",
+  "description": "Synthetic procurement-invoice candidate contract.",
+  "prompt": "只转写图片中明确可见的采购发票字段，不推断。只输出 JSON 对象，不要 Markdown。字段：invoice_number,invoice_date,supplier,buyer,currency,amount_excluding_tax,tax_amount,total_amount,po_number,synthetic_labels,uncertainties。金额输出数字；synthetic_labels 和 uncertainties 输出字符串数组；缺失字段输出 null。",
+  "additional_fields": "reject",
+  "fields": {
+    "invoice_number": { "type": "string", "required": true },
+    "invoice_date": { "type": "string", "required": true },
+    "supplier": { "type": "string", "required": true },
+    "buyer": { "type": "string", "required": true },
+    "currency": { "type": "string", "required": true },
+    "amount_excluding_tax": { "type": "number", "required": true },
+    "tax_amount": { "type": "number", "required": true },
+    "total_amount": { "type": "number", "required": true },
+    "po_number": { "type": "string", "required": true },
+    "synthetic_labels": { "type": "array", "items": "string", "required": true },
+    "uncertainties": { "type": "array", "items": "string", "required": true }
+  },
+  "rules": [
+    {
+      "id": "invoice-arithmetic",
+      "kind": "sum_equals",
+      "fields": ["amount_excluding_tax", "tax_amount"],
+      "target": "total_amount",
+      "tolerance": 0.01
+    },
+    {
+      "id": "synthetic-safety-label",
+      "kind": "array_contains_all",
+      "field": "synthetic_labels",
+      "values": ["合成测试"]
+    }
+  ],
+  "safety": {
+    "human_required": true,
+    "erp_write_allowed": false
+  }
+}
+

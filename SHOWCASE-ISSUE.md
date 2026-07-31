@@ -26,7 +26,7 @@
 
 本轮继续把 `qwen3-vl-plus` 作为下一测试集的临时基线，但不根据一张合成票据宣称生产准确率或模型绝对优劣。
 
-公开仓库：https://github.com/2487238628/qiheng-evidence-first-ocr
+公开仓库：https://github.com/2487238628/evidencegate-ocr
 
 仓库包含合成票据、冻结字段、真实运行证据、三模型对比和一键重跑脚本，不包含真实发票、员工信息、税号、银行账号、ERP 数据或 API Key。
 

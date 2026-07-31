@@ -1,0 +1,44 @@
+name: New domain example
+description: Propose a frozen evidence-gate case for another workflow
+labels: [domain-example]
+body:
+  - type: input
+    id: domain
+    attributes:
+      label: Domain and user
+      placeholder: Arts-event editor, procurement reviewer, support operator
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision the gate must not make
+    validations:
+      required: true
+  - type: textarea
+    id: fields
+    attributes:
+      label: Candidate fields and original evidence
+    validations:
+      required: true
+  - type: textarea
+    id: cases
+    attributes:
+      label: Acceptable, unacceptable and adversarial cases
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Proposed route metrics and evidence boundary
+    validations:
+      required: true
+  - type: checkboxes
+    id: data
+    attributes:
+      label: Data confirmation
+      options:
+        - label: All public inputs will be synthetic or irreversibly redacted.
+          required: true
+        - label: Human responsibility and automatic-write boundaries will remain explicit.
+          required: true

@@ -1,0 +1,46 @@
+name: Reproducible bug
+description: Report a contract, routing, CLI or evidence problem
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not attach real sensitive documents or credentials. Use a synthetic reproducer.
+  - type: input
+    id: version
+    attributes:
+      label: EvidenceGate version or commit
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Synthetic input and schema
+      description: Provide the smallest reproducible candidate and schema, or a repository path.
+    validations:
+      required: true
+  - type: input
+    id: expected
+    attributes:
+      label: Expected route
+      placeholder: ACCEPT_CANDIDATE, HUMAN_REVIEW or MODEL_OUTPUT_INVALID
+    validations:
+      required: true
+  - type: input
+    id: actual
+    attributes:
+      label: Actual route
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Command, output, runtime and failures
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: The report contains no active credential or real sensitive document.
+          required: true

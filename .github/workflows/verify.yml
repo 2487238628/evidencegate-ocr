@@ -9,12 +9,18 @@ permissions:
 
 jobs:
   evidence:
-    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: "22"
-      - run: npm.cmd test
-      - shell: powershell
+      - shell: pwsh
+        run: npm test
+      - if: runner.os == 'Windows'
+        shell: pwsh
         run: .\verify-release.ps1

@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.3.0",
+  "schema_id": "arts-event-publication-v1",
+  "description": "Synthetic arts-event candidate contract for evidence-first editorial review.",
+  "additional_fields": "reject",
+  "fields": {
+    "content_kind": { "type": "string", "required": true },
+    "event_title": { "type": "string", "required": true },
+    "source_published_at": { "type": "string", "required": true, "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$" },
+    "start_at": { "type": "string", "required": true, "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$" },
+    "end_at": { "type": "string", "required": true, "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$" },
+    "venue": { "type": "string", "required": true },
+    "organizers": { "type": "array", "items": "string", "required": true },
+    "public_participation_evidence": { "type": "array", "items": "string", "required": true },
+    "source_name": { "type": "string", "required": true },
+    "source_locators": { "type": "array", "items": "string", "required": true },
+    "document_instructions": { "type": "array", "items": "string", "required": true },
+    "uncertainties": { "type": "array", "items": "string", "required": true }
+  },
+  "rules": [
+    { "id": "source-before-event", "kind": "date_order", "before": "source_published_at", "after": "start_at" },
+    { "id": "event-time-order", "kind": "date_order", "before": "start_at", "after": "end_at" },
+    { "id": "organizers-unique", "kind": "array_unique", "field": "organizers" },
+    { "id": "document-instruction-route", "kind": "array_empty", "field": "document_instructions" },
+    { "id": "uncertainty-route", "kind": "array_empty", "field": "uncertainties" }
+  ],
+  "safety": { "human_required": true, "erp_write_allowed": false }
+}

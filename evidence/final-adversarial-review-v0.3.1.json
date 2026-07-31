@@ -87,6 +87,11 @@
                                    "before":  "missing locator accepted when schema did not distinguish critical fields",
                                    "after":  "schema-configurable required locator routes to human review",
                                    "reason":  "Preserve evidence-first boundary."
+                               },
+                               {
+                                   "before":  "clean-clone validation executed from C:\\\\tmp",
+                                   "after":  "validation executed from C:\\\\tmp\\\\evidencegate-clean-21e0024",
+                                   "reason":  "Correct the working directory; cloned source remained unchanged."
                                }
                            ],
     "outputs":  {
@@ -125,5 +130,38 @@
                              "exit_code":  0,
                              "duration_ms":  929.985,
                              "required_files":  41
-                         }
+                         },
+    "remote_ci":  {
+                      "url":  "https://github.com/2487238628/evidencegate-ocr/actions/runs/30598583062",
+                      "commit":  "21e0024d3e06825fa2a3dd4f89c55bd96adb87d4",
+                      "ubuntu":  {
+                                     "output":  "PASS",
+                                     "duration_seconds":  12
+                                 },
+                      "windows":  {
+                                      "output":  "PASS",
+                                      "duration_seconds":  63
+                                  }
+                  },
+    "clean_clone":  {
+                        "target":  "C:\\\\tmp\\\\evidencegate-clean-21e0024",
+                        "clone_output":  "SUCCESS",
+                        "first_validation":  {
+                                                 "output":  "FAIL",
+                                                 "failure":  "Validation commands were mistakenly run from C:\\\\tmp instead of the cloned repository.",
+                                                 "duration_ms":  null,
+                                                 "duration_status":  "NOT_SEPARATELY_MEASURED"
+                                             },
+                        "manual_correction":  "Reran the same validation commands with the clean clone as the working directory; no source files changed.",
+                        "final_validation":  {
+                                                 "commit":  "21e0024d3e06825fa2a3dd4f89c55bd96adb87d4",
+                                                 "npm_test_output":  "PASS",
+                                                 "npm_test_exit_code":  0,
+                                                 "npm_test_duration_ms":  2024.424,
+                                                 "verify_output":  "PASS",
+                                                 "verify_exit_code":  0,
+                                                 "verify_duration_ms":  965.258,
+                                                 "required_files":  41
+                                             }
+                    }
 }

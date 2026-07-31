@@ -25,6 +25,20 @@ flowchart LR
 
 The gate contract is provider-independent. Alibaba Cloud Model Studio is the live location example in v0.4.0.
 
+## Road to v0.5.0
+
+The public stable release remains `v0.4.0`. A `v0.5.0-rc1` tag will require an independent, host-agnostic blind evaluation rather than another score produced by the implementation team.
+
+The frozen protocol requires 20 SHA-256-bound document images to be labeled before any prediction is shown, the gold file to be sealed before one frozen prediction run, and all three release gates to pass:
+
+- dangerous false accepts: `0`;
+- accepted critical-field accuracy: `100%`;
+- accepted critical-field evidence coverage: `100%`.
+
+No independent gold file, prediction, or score exists yet. See [the independent evaluator request](https://github.com/endtree-FDE/evidencegate-ocr/issues/5) if you would like to help.
+
+Private host applications are not part of this repository's public evidence. Release claims cover only the code, fixtures, and run records published here.
+
 ## v0.4.0 result
 
 The final live run used `qwen3.5-ocr` advanced recognition on five GPT-image-2 synthetic procurement images.

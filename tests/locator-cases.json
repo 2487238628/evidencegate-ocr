@@ -1,0 +1,91 @@
+{
+  "test_set_id": "EVIDENCE-LOCATOR-CONTRACT-001",
+  "image": { "width": 1000, "height": 1000, "page": 1 },
+  "cases": [
+    {
+      "id": "unique-text-match",
+      "value": "SYN-PO-2026-001",
+      "words": [
+        { "text": "发票号码：SYN-PO-2026-001", "location": [100, 100, 600, 100, 600, 150, 100, 150] }
+      ],
+      "expected_match_count": 1,
+      "expected_bbox": [0.1, 0.1, 0.6, 0.15]
+    },
+    {
+      "id": "date-format-normalization",
+      "value": "2026-07-22",
+      "words": [
+        { "text": "采购发票", "location": [100, 100, 300, 100, 300, 150, 100, 150] },
+        { "text": "开票日期：2026年07月22日", "location": [100, 200, 500, 200, 500, 250, 100, 250] }
+      ],
+      "expected_match_count": 1,
+      "expected_bbox": [0.1, 0.2, 0.5, 0.25]
+    },
+    {
+      "id": "iso-date-hyphens",
+      "value": "2026-07-22",
+      "words": [
+        { "text": "2026-07-22", "location": [100, 300, 500, 300, 500, 350, 100, 350] }
+      ],
+      "expected_match_count": 1,
+      "expected_bbox": [0.1, 0.3, 0.5, 0.35]
+    },
+    {
+      "id": "amount-format-normalization",
+      "value": 1130,
+      "words": [
+        { "text": "价税合计：¥1,130.00", "location": [500, 700, 900, 700, 900, 760, 500, 760] }
+      ],
+      "expected_match_count": 1,
+      "expected_bbox": [0.5, 0.7, 0.9, 0.76]
+    },
+    {
+      "id": "missing-text",
+      "value": "PO-SYN-MISSING",
+      "words": [
+        { "text": "采购单号：PO-SYN-0001", "location": [100, 300, 500, 300, 500, 350, 100, 350] }
+      ],
+      "expected_match_count": 0,
+      "expected_bbox": null
+    },
+    {
+      "id": "ambiguous-text",
+      "value": "CNY",
+      "words": [
+        { "text": "币种：CNY", "location": [100, 400, 300, 400, 300, 450, 100, 450] },
+        { "text": "结算币种：CNY", "location": [500, 400, 800, 400, 800, 450, 500, 450] }
+      ],
+      "expected_match_count": 2,
+      "expected_bbox": null
+    },
+    {
+      "id": "right-edge-text",
+      "value": "PO-SYN-00",
+      "words": [
+        { "text": "采购单号：PO-SYN-00", "location": [750, 500, 1000, 500, 1000, 550, 750, 550] }
+      ],
+      "expected_match_count": 1,
+      "expected_bbox": [0.75, 0.5, 1, 0.55]
+    },
+    {
+      "id": "invalid-location",
+      "value": "SYN-PO-2026-001",
+      "words": [
+        { "text": "发票号码：SYN-PO-2026-001", "location": [100, 100, 600] }
+      ],
+      "expected_match_count": 0,
+      "expected_bbox": null,
+      "expected_invalid_words": 1
+    },
+    {
+      "id": "empty-value",
+      "value": null,
+      "words": [
+        { "text": "发票号码：SYN-PO-2026-001", "location": [100, 100, 600, 100, 600, 150, 100, 150] }
+      ],
+      "expected_match_count": 0,
+      "expected_bbox": null
+    }
+  ],
+  "evidence_boundary": "Deterministic locator-contract cases test normalization and routing inputs, not OCR accuracy."
+}

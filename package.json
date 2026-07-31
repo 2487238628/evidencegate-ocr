@@ -1,22 +1,24 @@
 {
   "name": "evidencegate-ocr",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Model-independent acceptance gate for document AI outputs before enterprise use.",
   "private": true,
   "type": "module",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/2487238628/evidencegate-ocr.git"
+    "url": "git+https://github.com/endtree-FDE/evidencegate-ocr.git"
   },
   "engines": {
     "node": ">=20"
   },
   "scripts": {
     "test:gate": "node test-gate.mjs",
+    "test:locator": "node test-locator.mjs",
+    "test:visual": "node test-png-signal.mjs",
     "test:adversarial": "node adversarial-eval.mjs",
     "test:arts": "node examples/arts-event/eval.mjs",
     "test:corrections": "node apply-human-corrections.mjs",
-    "test": "npm run test:gate && npm run test:adversarial && npm run test:arts && npm run test:corrections"
+    "test": "npm run test:gate && npm run test:locator && npm run test:visual && npm run test:adversarial && npm run test:arts && npm run test:corrections"
   }
 }

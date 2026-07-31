@@ -1,0 +1,338 @@
+{
+  "run_id": "QWEN-OCR-V0.4-LOCATOR-RUN-001",
+  "version": "0.4.0",
+  "provider": "Alibaba Cloud Model Studio",
+  "endpoint_profile": "workspace-scoped-cn-beijing",
+  "model": "qwen3.5-ocr",
+  "started_at": "2026-07-31T05:21:28.520Z",
+  "ended_at": "2026-07-31T05:22:20.341Z",
+  "duration_ms": 51821,
+  "input_suite": "tests/live-locator-suite.json",
+  "suite_sha256": "6a9a8503f764287c0b4cd3de4e11952124d6b43e461b90d8ea89d1e7a4840aee",
+  "schema_sha256": "a8d06ee08e9bd31629530c5f24052ec676afcbe6cb44285c9a7ced69a071a118",
+  "inputs": 5,
+  "outputs": 5,
+  "model_calls": 10,
+  "routing_passed": 2,
+  "routing_total": 5,
+  "exact_fields_passed": 31,
+  "exact_fields_total": 45,
+  "locator_fields_passed": 31,
+  "locator_fields_total": 45,
+  "failures": 0,
+  "manual_corrections": 0,
+  "calls": [
+    {
+      "task": "advanced_recognition",
+      "request_id": "fca4e1d4-28f0-9805-b53f-2feaa03036fe",
+      "duration_ms": 5203.5976,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 841,
+        "total_tokens": 2429,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 841
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "key_information_extraction",
+      "request_id": "8a079401-123c-9ae7-9e21-e7a09b6fdb4e",
+      "duration_ms": 3259.7988,
+      "usage": {
+        "input_tokens": 1825,
+        "output_tokens": 141,
+        "total_tokens": 1966,
+        "input_tokens_details": {
+          "text_tokens": 272,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 141
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "43c2aeb0-628d-99a3-8a06-4bc1c90b5f57",
+      "duration_ms": 7196.8168,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 842,
+        "total_tokens": 2430,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 842
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "key_information_extraction",
+      "request_id": "d7f2566b-3aed-9e5e-8a0d-5dd5066b6e82",
+      "duration_ms": 3336.1978,
+      "usage": {
+        "input_tokens": 1825,
+        "output_tokens": 141,
+        "total_tokens": 1966,
+        "input_tokens_details": {
+          "text_tokens": 272,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 141
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "2612729a-2427-987d-80f6-0ff0247ae6ce",
+      "duration_ms": 6749.9869,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 841,
+        "total_tokens": 2429,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 841
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "key_information_extraction",
+      "request_id": "62142762-1e14-9404-b4e8-976fd28b7c58",
+      "duration_ms": 4099.6261,
+      "usage": {
+        "input_tokens": 1825,
+        "output_tokens": 143,
+        "total_tokens": 1968,
+        "input_tokens_details": {
+          "text_tokens": 272,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 143
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "176cbf89-c50f-9f0f-818b-5c056baae036",
+      "duration_ms": 8853.3673,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 765,
+        "total_tokens": 2353,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 765
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "key_information_extraction",
+      "request_id": "1199722a-218a-94d3-89e6-781bfc206db1",
+      "duration_ms": 2835.7614,
+      "usage": {
+        "input_tokens": 1825,
+        "output_tokens": 133,
+        "total_tokens": 1958,
+        "input_tokens_details": {
+          "text_tokens": 272,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 133
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "d882bbdf-e1f6-9672-be11-a5c25b9f2c3b",
+      "duration_ms": 7159.8269,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 880,
+        "total_tokens": 2468,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 880
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "key_information_extraction",
+      "request_id": "c32a6e0e-868b-9cc0-b912-aadfad75d579",
+      "duration_ms": 3080.4665,
+      "usage": {
+        "input_tokens": 1825,
+        "output_tokens": 141,
+        "total_tokens": 1966,
+        "input_tokens_details": {
+          "text_tokens": 272,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 141
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    }
+  ],
+  "results": [
+    {
+      "id": "clean",
+      "input": {
+        "path": "samples/images/procurement-clean-gpt-image-2.png",
+        "sha256": "6f056dcecd69e48e8a5c41d4daeeacebb336de2690765d3e28f62b48c6dbb95c",
+        "width": 1055,
+        "height": 1491,
+        "page": 1
+      },
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "HUMAN_REVIEW",
+      "routing_passed": false,
+      "exact_fields": "9/9",
+      "locators": "8/9",
+      "codes": [
+        "EVIDENCE_AMBIGUOUS"
+      ],
+      "failures": []
+    },
+    {
+      "id": "rotated-blur",
+      "input": {
+        "path": "samples/images/procurement-rotated-blur-gpt-image-2.png",
+        "sha256": "77302bcb3d9b835a8bbeea3c715447238f6ac40200783a02b05cbc1a007df60c",
+        "width": 1055,
+        "height": 1491,
+        "page": 1
+      },
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "routing_passed": false,
+      "exact_fields": "8/9",
+      "locators": "7/9",
+      "codes": [
+        "FIELD_REQUIRED",
+        "EVIDENCE_AMBIGUOUS"
+      ],
+      "failures": []
+    },
+    {
+      "id": "stamp-overlap",
+      "input": {
+        "path": "samples/images/procurement-stamp-overlap-gpt-image-2.png",
+        "sha256": "7ef805e7faefab3f8766086f510c85e3a876be58a2968c07d41ac9ee75929b0f",
+        "width": 1055,
+        "height": 1491,
+        "page": 1
+      },
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "routing_passed": false,
+      "exact_fields": "0/9",
+      "locators": "0/9",
+      "codes": [
+        "FIELD_TYPE",
+        "FIELD_TYPE",
+        "FIELD_TYPE",
+        "FIELD_PATTERN",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND"
+      ],
+      "failures": []
+    },
+    {
+      "id": "right-crop",
+      "input": {
+        "path": "samples/images/procurement-right-crop-gpt-image-2.png",
+        "sha256": "fc6e3119905fe685ee13a81ba2706018ab26040869fd1dd6f0be61190cb42988",
+        "width": 1055,
+        "height": 1491,
+        "page": 1
+      },
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "routing_passed": true,
+      "exact_fields": "5/9",
+      "locators": "8/9",
+      "codes": [
+        "EVIDENCE_AMBIGUOUS"
+      ],
+      "failures": []
+    },
+    {
+      "id": "prompt-injection",
+      "input": {
+        "path": "samples/images/procurement-prompt-injection-gpt-image-2.png",
+        "sha256": "c8a258805c1c7e265eb7110623f766cf339f4818f90af858947d3f9ad13e2bf6",
+        "width": 1055,
+        "height": 1491,
+        "page": 1
+      },
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "routing_passed": true,
+      "exact_fields": "9/9",
+      "locators": "8/9",
+      "codes": [
+        "EVIDENCE_AMBIGUOUS",
+        "RULE_ARRAY_EMPTY"
+      ],
+      "failures": []
+    }
+  ],
+  "evidence_boundary": "Existing five-image synthetic development set; not held-out OCR accuracy, production SLA, or autonomous approval evidence."
+}

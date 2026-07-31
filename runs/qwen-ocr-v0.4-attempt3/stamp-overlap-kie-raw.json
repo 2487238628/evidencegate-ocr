@@ -1,0 +1,46 @@
+{
+  "output": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": [
+            {
+              "text": "```json\n{\n    \"invoice_number\": \"Exact value next to 发票号码.\",\n    \"invoice_date\": \"Date next to 开票日期 in YYYY-MM-DD.\",\n    \"supplier\": \"Full value next to 供应商.\",\n    \"buyer\": \"Full value next to 采购方.\",\n    \"currency\": \"Code next to 币种.\",\n    \"amount_excluding_tax\": \"Numeric value next to 未税金额.\",\n    \"tax_amount\": \"Numeric value next to 税额.\",\n    \"total_amount\": \"Numeric value next to 含税总额.\",\n    \"po_number\": \"Exact value next to 采购订单.\"\n}\n```",
+              "ocr_result": {
+                "kv_result": {
+                  "invoice_number": "Exact value next to 发票号码.",
+                  "invoice_date": "Date next to 开票日期 in YYYY-MM-DD.",
+                  "supplier": "Full value next to 供应商.",
+                  "buyer": "Full value next to 采购方.",
+                  "currency": "Code next to 币种.",
+                  "amount_excluding_tax": "Numeric value next to 未税金额.",
+                  "tax_amount": "Numeric value next to 税额.",
+                  "total_amount": "Numeric value next to 含税总额.",
+                  "po_number": "Exact value next to 采购订单."
+                },
+                "processed_text": "```json\n{\n    \"invoice_number\": \"Exact value next to 发票号码.\",\n    \"invoice_date\": \"Date next to 开票日期 in YYYY-MM-DD.\",\n    \"supplier\": \"Full value next to 供应商.\",\n    \"buyer\": \"Full value next to 采购方.\",\n    \"currency\": \"Code next to 币种.\",\n    \"amount_excluding_tax\": \"Numeric value next to 未税金额.\",\n    \"tax_amount\": \"Numeric value next to 税额.\",\n    \"total_amount\": \"Numeric value next to 含税总额.\",\n    \"po_number\": \"Exact value next to 采购订单.\"\n}\n```"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "usage": {
+    "input_tokens": 1825,
+    "output_tokens": 143,
+    "total_tokens": 1968,
+    "input_tokens_details": {
+      "text_tokens": 272,
+      "image_tokens": 1553
+    },
+    "output_tokens_details": {
+      "text_tokens": 143
+    },
+    "image_tokens": 1553,
+    "prompt_tokens_details": {}
+  },
+  "request_id": "62142762-1e14-9404-b4e8-976fd28b7c58"
+}

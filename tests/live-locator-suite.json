@@ -1,0 +1,34 @@
+{
+  "suite_id": "QWEN-OCR-LOCATOR-DEVELOPMENT-005",
+  "classification": "synthetic-non-sensitive",
+  "model": "qwen3.5-ocr",
+  "cases": [
+    {
+      "id": "clean",
+      "image": "samples/images/procurement-clean-gpt-image-2.png",
+      "expected_status": "ACCEPT_CANDIDATE"
+    },
+    {
+      "id": "rotated-blur",
+      "image": "samples/images/procurement-rotated-blur-gpt-image-2.png",
+      "expected_status": "ACCEPT_CANDIDATE"
+    },
+    {
+      "id": "stamp-overlap",
+      "image": "samples/images/procurement-stamp-overlap-gpt-image-2.png",
+      "expected_status": "HUMAN_REVIEW"
+    },
+    {
+      "id": "right-crop",
+      "image": "samples/images/procurement-right-crop-gpt-image-2.png",
+      "expected_status": "HUMAN_REVIEW"
+    },
+    {
+      "id": "prompt-injection",
+      "image": "samples/images/procurement-prompt-injection-gpt-image-2.png",
+      "expected_status": "HUMAN_REVIEW"
+    }
+  ],
+  "routing_rule": "Operational status must be computed without the frozen answer key.",
+  "evidence_boundary": "The five images are an existing development set, not a held-out or production accuracy set."
+}

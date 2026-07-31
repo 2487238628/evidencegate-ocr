@@ -4,22 +4,22 @@
 
 | State | Meaning | Allowed next step |
 |---|---|---|
-| `ACCEPT_CANDIDATE` | Contract and frozen deterministic checks passed | Human review |
-| `HUMAN_REVIEW` | Candidate is parseable but contains uncertainty, obstruction, injection text or conflict | Inspect original evidence, correct or request resubmission |
-| `MODEL_OUTPUT_INVALID` | Candidate cannot safely enter the workflow | Retry, repair the integration or reject the model output |
+| `ACCEPT_CANDIDATE` | Contract and deterministic checks passed | Human review |
+| `HUMAN_REVIEW` | Candidate is parseable but contains missing, ambiguous, cropped, obstructed, injected, or conflicting evidence | Inspect source evidence, correct, or request resubmission |
+| `MODEL_OUTPUT_INVALID` | Candidate cannot safely enter the workflow | Retry, repair the integration, or reject the model output |
 
-None of these states grants approval, payment or ERP write permission.
+None grants approval, payment, publication, or ERP-write permission.
 
 ## Field envelope
-
-Use these keys when available:
 
 ```json
 {
   "value": null,
   "source": "model_output",
+  "source_text": null,
   "locator": null,
   "confidence": null,
+  "match_count": null,
   "contract_errors": [],
   "business_rule_errors": [],
   "expected_mismatches": [],
@@ -28,27 +28,37 @@ Use these keys when available:
 }
 ```
 
-Keep unavailable evidence as `null`.
+Keep unavailable evidence as `null`; never invent it.
 
-For a critical field, set `"locator_required": true` in its schema definition. If its locator is absent, route to `HUMAN_REVIEW` with `EVIDENCE_LOCATOR_REQUIRED`; do not invent a page or bounding box.
+For a critical field, set `"locator_required": true`.
+
+| Condition | Route / code |
+|---|---|
+| `match_count === 0` | `HUMAN_REVIEW / EVIDENCE_TEXT_NOT_FOUND` |
+| `match_count > 1` | `HUMAN_REVIEW / EVIDENCE_AMBIGUOUS` |
+| locator absent | `HUMAN_REVIEW / EVIDENCE_LOCATOR_REQUIRED` |
+| locator touches configured edge margin | `HUMAN_REVIEW / EVIDENCE_TOUCHES_EDGE` |
+| several configured fields terminate on one vertical line | `HUMAN_REVIEW / RULE_ALIGNED_RIGHT_EDGES` |
+
+Locators use a one-based page number and normalized `[x1, y1, x2, y2]`, with every coordinate from 0 to 1.
 
 ## Minimum run record
 
 - run and case identifier;
 - input classification and SHA-256;
-- model, prompt/schema version and start/end time;
-- raw output reference and process exit code;
+- model, task, schema version, and start/end time;
+- raw response reference, request ID, Token usage, and exit code;
 - model and validator duration;
-- Token usage when returned;
 - gate state and error codes;
 - `human_required` and `erp_write_allowed`;
-- retry, failure and manual-correction events;
+- retry, failure, implementation-correction, and manual-data-correction events;
 - evidence boundary.
 
 ## Metric formulas
 
-- Dangerous false-accept rate = unacceptable cases routed `ACCEPT_CANDIDATE` / unacceptable cases.
-- Overblock rate = acceptable cases not routed `ACCEPT_CANDIDATE` / acceptable cases.
-- Routing accuracy = cases with expected route / labeled cases.
+- dangerous false-accept rate = unacceptable cases routed `ACCEPT_CANDIDATE` / unacceptable cases;
+- overblock rate = acceptable cases not routed `ACCEPT_CANDIDATE` / acceptable cases;
+- routing accuracy = cases with expected route / labeled cases;
+- locator coverage = critical fields with one valid locator / locator-eligible critical fields.
 
-Always publish the numerator and denominator with the rate. A zero on a small synthetic set is not production proof.
+Always publish numerator and denominator. A zero failure count on a small synthetic development set is not production proof.

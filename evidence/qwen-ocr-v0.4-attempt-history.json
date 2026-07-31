@@ -1,0 +1,101 @@
+{
+  "release": "0.4.0",
+  "test_suite": "tests/live-locator-suite.json",
+  "suite_sha256": "6a9a8503f764287c0b4cd3de4e11952124d6b43e461b90d8ea89d1e7a4840aee",
+  "classification": "synthetic-non-sensitive",
+  "provider": "Alibaba Cloud Model Studio",
+  "model": "qwen3.5-ocr",
+  "attempts": [
+    {
+      "directory": "runs/qwen-ocr-v0.4-attempt1",
+      "inputs": 5,
+      "outputs": 5,
+      "model_calls": 10,
+      "routing": "0/5",
+      "exact_fields": "0/45",
+      "locators": "0/45",
+      "duration_ms": 34021,
+      "failures": 0,
+      "manual_data_corrections": 0,
+      "observed_failure": "Built-in task options were placed below parameters instead of parameters.ocr_options, so both calls silently returned ordinary OCR.",
+      "implementation_correction": "Moved task and task_config to parameters.ocr_options."
+    },
+    {
+      "directory": "runs/qwen-ocr-v0.4-attempt2",
+      "inputs": 5,
+      "outputs": 5,
+      "model_calls": 10,
+      "routing": "0/5",
+      "exact_fields": "14/45",
+      "locators": "21/45",
+      "duration_ms": 56968,
+      "failures": 0,
+      "manual_data_corrections": 0,
+      "observed_failure": "KIE copied long result-schema descriptions or returned labels instead of values.",
+      "implementation_correction": "Shortened KIE hints and separated positioned text from safety routing."
+    },
+    {
+      "directory": "runs/qwen-ocr-v0.4-attempt3",
+      "inputs": 5,
+      "outputs": 5,
+      "model_calls": 10,
+      "routing": "2/5",
+      "exact_fields": "31/45",
+      "locators": "31/45",
+      "duration_ms": 51821,
+      "failures": 0,
+      "manual_data_corrections": 0,
+      "observed_failure": "KIE remained unstable on the same images; date matching also treated non-date text as a date candidate.",
+      "implementation_correction": "Removed KIE from the operational route and introduced deterministic label/value parsing over advanced-recognition words."
+    },
+    {
+      "directory": "runs/qwen-ocr-v0.4-attempt4",
+      "inputs": 5,
+      "outputs": 5,
+      "model_calls": 5,
+      "routing": "3/5",
+      "exact_fields": "41/45",
+      "locators": "40/45",
+      "duration_ms": 36716,
+      "failures": 0,
+      "manual_data_corrections": 0,
+      "observed_failure": "ISO date hyphens were interpreted as negative signs, leaving five date locators unresolved.",
+      "implementation_correction": "Changed date matching to compare digit groups and added an ISO-date regression case."
+    },
+    {
+      "directory": "runs/qwen-ocr-v0.4-attempt5",
+      "inputs": 5,
+      "outputs": 5,
+      "model_calls": 5,
+      "routing": "4/5",
+      "exact_fields": "41/45",
+      "locators": "45/45",
+      "duration_ms": 34179,
+      "failures": 0,
+      "manual_data_corrections": 0,
+      "observed_failure": "The right-cropped values were all positioned but did not touch the physical page edge, so the initial edge-margin rule did not fire.",
+      "implementation_correction": "Added a cross-field rule for three or more right edges aligned on the same vertical cut line."
+    },
+    {
+      "directory": "runs/qwen-ocr-v0.4",
+      "inputs": 5,
+      "outputs": 5,
+      "model_calls": 5,
+      "routing": "5/5",
+      "exact_fields": "41/45",
+      "locators": "45/45",
+      "duration_ms": 38184,
+      "failures": 0,
+      "manual_data_corrections": 0,
+      "observed_failure": null,
+      "implementation_correction": null
+    }
+  ],
+  "separate_diagnostics": {
+    "local_command_failures_before_network": 2,
+    "reason": "Two node -e probes failed locally because of module-format and quoting errors; no API request was sent.",
+    "successful_minimal_probes": 6,
+    "conclusion": "Empty KIE descriptions fixed copying but confused amount semantics; concise prompts fixed the clean sample but did not detect the visual stamp; a separate OCR yes/no obstruction prompt returned NO for both clean and stamp images."
+  },
+  "evidence_boundary": "All images are synthetic development fixtures. Attempt iteration on the same images is not independent evaluation or production accuracy."
+}

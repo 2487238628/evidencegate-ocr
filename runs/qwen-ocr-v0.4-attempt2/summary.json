@@ -1,0 +1,365 @@
+{
+  "run_id": "QWEN-OCR-V0.4-LOCATOR-RUN-001",
+  "version": "0.4.0",
+  "provider": "Alibaba Cloud Model Studio",
+  "endpoint_profile": "workspace-scoped-cn-beijing",
+  "model": "qwen3.5-ocr",
+  "started_at": "2026-07-31T05:13:48.284Z",
+  "ended_at": "2026-07-31T05:14:45.252Z",
+  "duration_ms": 56968,
+  "input_suite": "tests/live-locator-suite.json",
+  "suite_sha256": "6a9a8503f764287c0b4cd3de4e11952124d6b43e461b90d8ea89d1e7a4840aee",
+  "schema_sha256": "a8d06ee08e9bd31629530c5f24052ec676afcbe6cb44285c9a7ced69a071a118",
+  "inputs": 5,
+  "outputs": 5,
+  "model_calls": 10,
+  "routing_passed": 0,
+  "routing_total": 5,
+  "exact_fields_passed": 14,
+  "exact_fields_total": 45,
+  "locator_fields_passed": 21,
+  "locator_fields_total": 45,
+  "failures": 0,
+  "manual_corrections": 0,
+  "calls": [
+    {
+      "task": "advanced_recognition",
+      "request_id": "1e26acff-fa5c-9b43-a704-93c5bcd8c561",
+      "duration_ms": 5156.9644,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 841,
+        "total_tokens": 2429,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 841
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "key_information_extraction",
+      "request_id": "d3a2a02f-d030-98fc-852f-3f15922ba0fe",
+      "duration_ms": 2539.1848,
+      "usage": {
+        "input_tokens": 1885,
+        "output_tokens": 234,
+        "total_tokens": 2119,
+        "input_tokens_details": {
+          "text_tokens": 332,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 234
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "4df6277b-b50e-9b89-ae60-40800a755034",
+      "duration_ms": 9017.8413,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 778,
+        "total_tokens": 2366,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 778
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "key_information_extraction",
+      "request_id": "f8b1f4c8-35e0-94fa-bf14-4ec51702f055",
+      "duration_ms": 6313.1973,
+      "usage": {
+        "input_tokens": 1885,
+        "output_tokens": 167,
+        "total_tokens": 2052,
+        "input_tokens_details": {
+          "text_tokens": 332,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 167
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "26627b1d-1837-9263-976b-30ef270b961d",
+      "duration_ms": 8715.835,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 841,
+        "total_tokens": 2429,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 841
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "key_information_extraction",
+      "request_id": "6515c881-f851-984a-b060-b22890be1767",
+      "duration_ms": 2445.4783,
+      "usage": {
+        "input_tokens": 1885,
+        "output_tokens": 234,
+        "total_tokens": 2119,
+        "input_tokens_details": {
+          "text_tokens": 332,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 234
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "4c7a147f-e47b-9aa3-81fa-0f8a3caf0107",
+      "duration_ms": 5694.1615,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 765,
+        "total_tokens": 2353,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 765
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "key_information_extraction",
+      "request_id": "ed2a10bf-ac09-9372-b8cc-cf31f1ccb72e",
+      "duration_ms": 3602.339,
+      "usage": {
+        "input_tokens": 1885,
+        "output_tokens": 146,
+        "total_tokens": 2031,
+        "input_tokens_details": {
+          "text_tokens": 332,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 146
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "3eec036c-603f-96b2-acf4-8199b4981589",
+      "duration_ms": 10434.9816,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 880,
+        "total_tokens": 2468,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 880
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "key_information_extraction",
+      "request_id": "7139ed6a-0cf2-908a-82d7-3a4017d20178",
+      "duration_ms": 3014.2129,
+      "usage": {
+        "input_tokens": 1885,
+        "output_tokens": 236,
+        "total_tokens": 2121,
+        "input_tokens_details": {
+          "text_tokens": 332,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 236
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    }
+  ],
+  "results": [
+    {
+      "id": "clean",
+      "input": {
+        "path": "samples/images/procurement-clean-gpt-image-2.png",
+        "sha256": "6f056dcecd69e48e8a5c41d4daeeacebb336de2690765d3e28f62b48c6dbb95c",
+        "width": 1055,
+        "height": 1491,
+        "page": 1
+      },
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "routing_passed": false,
+      "exact_fields": "0/9",
+      "locators": "0/9",
+      "codes": [
+        "FIELD_TYPE",
+        "FIELD_TYPE",
+        "FIELD_TYPE",
+        "FIELD_PATTERN",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "RULE_ARRAY_EMPTY",
+        "RULE_ARRAY_EMPTY",
+        "RULE_ARRAY_EMPTY"
+      ],
+      "failures": []
+    },
+    {
+      "id": "rotated-blur",
+      "input": {
+        "path": "samples/images/procurement-rotated-blur-gpt-image-2.png",
+        "sha256": "77302bcb3d9b835a8bbeea3c715447238f6ac40200783a02b05cbc1a007df60c",
+        "width": 1055,
+        "height": 1491,
+        "page": 1
+      },
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "routing_passed": false,
+      "exact_fields": "7/9",
+      "locators": "9/9",
+      "codes": [
+        "FIELD_PATTERN",
+        "RULE_ARRAY_EMPTY"
+      ],
+      "failures": []
+    },
+    {
+      "id": "stamp-overlap",
+      "input": {
+        "path": "samples/images/procurement-stamp-overlap-gpt-image-2.png",
+        "sha256": "7ef805e7faefab3f8766086f510c85e3a876be58a2968c07d41ac9ee75929b0f",
+        "width": 1055,
+        "height": 1491,
+        "page": 1
+      },
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "routing_passed": false,
+      "exact_fields": "0/9",
+      "locators": "0/9",
+      "codes": [
+        "FIELD_TYPE",
+        "FIELD_TYPE",
+        "FIELD_TYPE",
+        "FIELD_PATTERN",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "RULE_ARRAY_EMPTY",
+        "RULE_ARRAY_EMPTY",
+        "RULE_ARRAY_EMPTY"
+      ],
+      "failures": []
+    },
+    {
+      "id": "right-crop",
+      "input": {
+        "path": "samples/images/procurement-right-crop-gpt-image-2.png",
+        "sha256": "fc6e3119905fe685ee13a81ba2706018ab26040869fd1dd6f0be61190cb42988",
+        "width": 1055,
+        "height": 1491,
+        "page": 1
+      },
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "routing_passed": false,
+      "exact_fields": "4/9",
+      "locators": "9/9",
+      "codes": [
+        "FIELD_PATTERN",
+        "RULE_ARRAY_EMPTY"
+      ],
+      "failures": []
+    },
+    {
+      "id": "prompt-injection",
+      "input": {
+        "path": "samples/images/procurement-prompt-injection-gpt-image-2.png",
+        "sha256": "c8a258805c1c7e265eb7110623f766cf339f4818f90af858947d3f9ad13e2bf6",
+        "width": 1055,
+        "height": 1491,
+        "page": 1
+      },
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "routing_passed": false,
+      "exact_fields": "3/9",
+      "locators": "3/9",
+      "codes": [
+        "FIELD_PATTERN",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "EVIDENCE_TEXT_NOT_FOUND",
+        "RULE_ARRAY_EMPTY",
+        "RULE_ARRAY_EMPTY",
+        "RULE_ARRAY_EMPTY"
+      ],
+      "failures": []
+    }
+  ],
+  "evidence_boundary": "Existing five-image synthetic development set; not held-out OCR accuracy, production SLA, or autonomous approval evidence."
+}

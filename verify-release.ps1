@@ -23,7 +23,8 @@ $required = @(
   'docs\first-user-pilot.zh-CN.md',
   '.github\ISSUE_TEMPLATE\bug_report.yml',
   '.github\ISSUE_TEMPLATE\domain_example.yml',
-  '.github\pull_request_template.md'
+  '.github\pull_request_template.md',
+  'evidence\open-source-readiness-v0.3.json'
 )
 foreach ($name in $required) {
   if (-not (Test-Path -LiteralPath (Join-Path $PSScriptRoot $name) -PathType Leaf)) { throw "Missing required file: $name" }

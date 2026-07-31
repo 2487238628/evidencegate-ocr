@@ -112,6 +112,7 @@ npm run test:arts
 - `adversarial-eval-v0.2-results.json`: deterministic outputs and safety rates;
 - `examples/arts-event/cases.json`: frozen 12-case arts-event inputs;
 - `evidence/arts-event-eval-v0.3-results.json`: frozen arts-event routing evidence;
+- `evidence/open-source-readiness-v0.3.json`: clean-clone, CI, timing, failure and correction evidence;
 - `samples/images/`: five GPT-image-2 synthetic images;
 - `samples/image-generation-records.json`: prompts, hashes, times and failures;
 - `evidence/procurement-image-suite-three-rounds.json`: three real Bailian iterations;

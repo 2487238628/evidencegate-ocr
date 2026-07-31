@@ -1,0 +1,42 @@
+{
+  "report_id": "EVIDENCEGATE-OPEN-SOURCE-READINESS-V030",
+  "generated_at": "2026-07-31T01:21:44.572Z",
+  "repository": "https://github.com/2487238628/evidencegate-ocr",
+  "validated_commit": "ebc54f8999f5ce4d4d06ae1915178fa3f73e9fc5",
+  "environment": {
+    "source": "fresh public clone",
+    "os": "Windows",
+    "node": "v26.2.0"
+  },
+  "inputs": {
+    "test_command": "npm test",
+    "release_command": ".\\verify-release.ps1",
+    "quick_start_command": "node evidence-gate-cli.mjs --candidate examples/procurement-invoice/candidate.json --schema examples/procurement-invoice/schema.json --expected examples/procurement-invoice/expected.json --output gate-result.json"
+  },
+  "outputs": {
+    "frozen_route_cases": 55,
+    "routing_failures": 0,
+    "dangerous_false_accepts": 0,
+    "overblocks": 0,
+    "release_status": "PASS",
+    "quick_start_status": "ACCEPT_CANDIDATE",
+    "quick_start_output_file_created": true,
+    "human_required": true,
+    "erp_write_allowed": false
+  },
+  "timing_ms": {
+    "npm_test_wall": 2014.435,
+    "release_verification_wall": 793.703,
+    "quick_start_wall": 73.535
+  },
+  "failures": [],
+  "manual_corrections": 0,
+  "ci": {
+    "run_id": 30596010844,
+    "run_url": "https://github.com/2487238628/evidencegate-ocr/actions/runs/30596010844",
+    "head_sha": "ebc54f8999f5ce4d4d06ae1915178fa3f73e9fc5",
+    "windows": "PASS",
+    "ubuntu": "PASS"
+  },
+  "evidence_boundary": "This proves reproducibility for the frozen synthetic suites and public quick start. It does not prove production OCR accuracy, editorial accuracy, SLA, ROI or independent-user adoption."
+}

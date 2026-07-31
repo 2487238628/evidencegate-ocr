@@ -1,4 +1,6 @@
-runs/
+runs/*
+!runs/qwen-ocr-v0.4*/
+!runs/qwen-ocr-v0.4*/**
 .env
 *.log
 *.tmp

@@ -1,0 +1,35 @@
+{
+  "output": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": [
+            {
+              "text": "| 合成测试票据 | 仅供OCR评测 | 非真实发票 |\n| --- | --- | --- |\n| 采购发票 |  |  |\n\n| 发票号码 | SYN-PO-2026-001 |\n| --- | --- |\n| 开票日期 | 2026-07-22 |\n| 供应商 | 云杉测试材料有限公司 |\n| 采购方 | 星桥测试制造有限公司 |\n| 采购订单 | PO-SYN-0001 |\n| 币种 | CNY |\n| 未税金额 | 1000.00 |\n| 税额 | 130.00 |\n| 含税总额 | 1130.00 |\n",
+              "ocr_result": {
+                "processed_text": "| 合成测试票据 | 仅供OCR评测 | 非真实发票 |\n| --- | --- | --- |\n| 采购发票 |  |  |\n\n| 发票号码 | SYN-PO-2026-001 |\n| --- | --- |\n| 开票日期 | 2026-07-22 |\n| 供应商 | 云杉测试材料有限公司 |\n| 采购方 | 星桥测试制造有限公司 |\n| 采购订单 | PO-SYN-0001 |\n| 币种 | CNY |\n| 未税金额 | 1000.00 |\n| 税额 | 130.00 |\n| 含税总额 | 1130.00 |\n"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "usage": {
+    "input_tokens": 1581,
+    "output_tokens": 170,
+    "total_tokens": 1751,
+    "input_tokens_details": {
+      "text_tokens": 28,
+      "image_tokens": 1553
+    },
+    "output_tokens_details": {
+      "text_tokens": 170
+    },
+    "image_tokens": 1553,
+    "prompt_tokens_details": {}
+  },
+  "request_id": "93c17e84-11a8-9465-acb4-19c38c102d52"
+}

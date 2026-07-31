@@ -1,0 +1,195 @@
+{
+  "run_id": "QWEN-OCR-V0.4-LOCATOR-RUN-002",
+  "version": "0.4.0",
+  "provider": "Alibaba Cloud Model Studio",
+  "endpoint_profile": "workspace-scoped-cn-beijing",
+  "model": "qwen3.5-ocr",
+  "started_at": "2026-07-31T05:36:09.020Z",
+  "ended_at": "2026-07-31T05:36:47.204Z",
+  "duration_ms": 38184,
+  "suite_sha256": "6a9a8503f764287c0b4cd3de4e11952124d6b43e461b90d8ea89d1e7a4840aee",
+  "schema_sha256": "8fc58ff39372f579991919f5e51bbd433e265866cac4b40a6450de424b503142",
+  "inputs": 5,
+  "outputs": 5,
+  "model_calls": 5,
+  "routing_passed": 5,
+  "routing_total": 5,
+  "exact_fields_passed": 41,
+  "exact_fields_total": 45,
+  "locator_fields_passed": 45,
+  "locator_fields_total": 45,
+  "failures": 0,
+  "manual_corrections": 0,
+  "calls": [
+    {
+      "task": "advanced_recognition",
+      "request_id": "c7e1be8c-9743-9f0d-8132-edb18b4b75e9",
+      "duration_ms": 6482.7326,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 841,
+        "total_tokens": 2429,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 841
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "7ff20139-58a5-9bce-a39e-4f12376694f1",
+      "duration_ms": 9818.7952,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 778,
+        "total_tokens": 2366,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 778
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "8ae22375-9baa-9347-a856-585184cbb057",
+      "duration_ms": 8572.7815,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 841,
+        "total_tokens": 2429,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 841
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "e9244784-6827-9d0c-85a3-604fdd15494f",
+      "duration_ms": 5960.9753,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 765,
+        "total_tokens": 2353,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 765
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    },
+    {
+      "task": "advanced_recognition",
+      "request_id": "42d0f487-c3ae-9012-b3e1-8de162dd4916",
+      "duration_ms": 6776.2809,
+      "usage": {
+        "input_tokens": 1588,
+        "output_tokens": 881,
+        "total_tokens": 2469,
+        "input_tokens_details": {
+          "text_tokens": 35,
+          "image_tokens": 1553
+        },
+        "output_tokens_details": {
+          "text_tokens": 881
+        },
+        "image_tokens": 1553,
+        "prompt_tokens_details": {}
+      },
+      "exit_code": 0
+    }
+  ],
+  "results": [
+    {
+      "id": "clean",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "routing_passed": true,
+      "exact_fields": "9/9",
+      "locators": "9/9",
+      "red_pixel_ratio": 0,
+      "codes": [],
+      "failures": []
+    },
+    {
+      "id": "rotated-blur",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "routing_passed": true,
+      "exact_fields": "9/9",
+      "locators": "9/9",
+      "red_pixel_ratio": 0,
+      "codes": [],
+      "failures": []
+    },
+    {
+      "id": "stamp-overlap",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "routing_passed": true,
+      "exact_fields": "9/9",
+      "locators": "9/9",
+      "red_pixel_ratio": 0.005366797944062479,
+      "codes": [
+        "RULE_ARRAY_EMPTY"
+      ],
+      "failures": []
+    },
+    {
+      "id": "right-crop",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "routing_passed": true,
+      "exact_fields": "5/9",
+      "locators": "9/9",
+      "red_pixel_ratio": 0,
+      "codes": [
+        "RULE_ALIGNED_RIGHT_EDGES"
+      ],
+      "failures": []
+    },
+    {
+      "id": "prompt-injection",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "routing_passed": true,
+      "exact_fields": "9/9",
+      "locators": "9/9",
+      "red_pixel_ratio": 0.0039809155088508935,
+      "codes": [
+        "RULE_ARRAY_EMPTY",
+        "RULE_ARRAY_EMPTY"
+      ],
+      "failures": []
+    }
+  ],
+  "known_limitations": [
+    "The label-value parser is specific to this procurement-invoice layout.",
+    "The red-overlay rule is a conservative signal, not general stamp or obstruction recognition.",
+    "The development images are synthetic and not held out."
+  ],
+  "evidence_boundary": "Existing five-image synthetic development set; not production OCR accuracy, SLA, fraud detection, or autonomous approval evidence."
+}

@@ -7,7 +7,6 @@ export function evaluate({ candidateText, schema, expected = null }) {
   const started = process.hrtime.bigint();
   const baseSchema = { ...schema, rules: (schema.rules ?? []).filter((rule) => baseRuleKinds.has(rule.kind)) };
   const result = evaluateBase({ candidateText, schema: baseSchema, expected });
-  result.gate_version = "0.3.1";
   const contract = [];
   const business = [];
   const values = Object.fromEntries(Object.entries(result.fields).map(([name, field]) => [name, field.value]));
@@ -26,8 +25,15 @@ export function evaluate({ candidateText, schema, expected = null }) {
     }
 
     const locator = result.fields[name]?.locator;
-    if (spec.locator_required === true && locator == null) {
-      business.push(issue("EVIDENCE_LOCATOR_REQUIRED", "A source locator is required for this field.", name));
+    const matchCount = result.fields[name]?.match_count;
+    if (spec.locator_required === true) {
+      if (matchCount === 0) {
+        business.push(issue("EVIDENCE_TEXT_NOT_FOUND", "The candidate value was not found in positioned OCR text.", name));
+      } else if (matchCount > 1) {
+        business.push(issue("EVIDENCE_AMBIGUOUS", "The candidate value matches multiple positioned OCR regions.", name));
+      } else if (locator == null) {
+        business.push(issue("EVIDENCE_LOCATOR_REQUIRED", "A source locator is required for this field.", name));
+      }
     }
     if (locator != null) {
       const pageValid = Number.isInteger(locator.page) && locator.page >= 1;
@@ -39,6 +45,13 @@ export function evaluate({ candidateText, schema, expected = null }) {
         && bbox[1] < bbox[3];
       if (!pageValid || !bboxValid) {
         contract.push(issue("INVALID_LOCATOR", "Locator requires page >= 1 and normalized bbox [x1,y1,x2,y2].", name));
+      } else if (spec.locator_edge_margin != null) {
+        const margin = spec.locator_edge_margin;
+        if (typeof margin !== "number" || margin < 0 || margin >= 0.5) {
+          contract.push(issue("INVALID_LOCATOR_EDGE_MARGIN", "Locator edge margin must be from 0 up to 0.5.", name));
+        } else if (bbox[0] <= margin || bbox[1] <= margin || bbox[2] >= 1 - margin || bbox[3] >= 1 - margin) {
+          business.push(issue("EVIDENCE_TOUCHES_EDGE", "The located evidence touches the configured page-edge margin.", name));
+        }
       }
     }
   }
@@ -75,6 +88,18 @@ export function evaluate({ candidateText, schema, expected = null }) {
       if (values[rule.left] != null && values[rule.left] === values[rule.right]) {
         business.push(issue("RULE_FIELDS_NOT_EQUAL", `${rule.left} and ${rule.right} must differ.`, rule.right));
       }
+    } else if (rule.kind === "aligned_right_edges_review") {
+      const edges = (rule.fields ?? [])
+        .map((field) => result.fields[field]?.locator?.bbox?.[2])
+        .filter(Number.isFinite);
+      const minimum = rule.minimum ?? 3;
+      const tolerance = rule.tolerance ?? 0.002;
+      const aligned = edges.some((edge) =>
+        edges.filter((candidate) => Math.abs(candidate - edge) <= tolerance).length >= minimum
+      );
+      if (aligned) {
+        business.push(issue("RULE_ALIGNED_RIGHT_EDGES", "Multiple fields terminate on the same vertical cut line."));
+      }
     } else {
       contract.push(issue("UNKNOWN_RULE", `Unsupported rule kind: ${rule.kind}.`));
     }
@@ -96,7 +121,7 @@ export function evaluate({ candidateText, schema, expected = null }) {
     : result.business_rule_errors.length || result.expected_mismatches.length
       ? "HUMAN_REVIEW"
       : "ACCEPT_CANDIDATE";
-  result.gate_version = "0.2.0";
+  result.gate_version = "0.4.0";
   result.validator_duration_ms = Number(process.hrtime.bigint() - started) / 1e6;
   return result;
 }

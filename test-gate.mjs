@@ -15,6 +15,10 @@ for (const testCase of testSet.cases) {
   const candidate = structuredClone(testSet.base_candidate);
   const caseSchema = structuredClone(schema);
   for (const name of testCase.locator_required_fields ?? []) caseSchema.fields[name].locator_required = true;
+  for (const [name, margin] of Object.entries(testCase.locator_edge_margin_fields ?? {})) {
+    caseSchema.fields[name].locator_edge_margin = margin;
+  }
+  for (const rule of testCase.rules ?? []) caseSchema.rules.push(rule);
   for (const name of testCase.remove ?? []) delete candidate[name];
   Object.assign(candidate, testCase.changes ?? {});
   const payload = testCase.envelope
@@ -42,7 +46,7 @@ for (const testCase of testSet.cases) {
 const failed = results.filter((item) => !item.passed);
 const report = {
   test_set_id: testSet.test_set_id,
-  gate_version: "0.3.1",
+  gate_version: "0.4.0",
   test_set_sha256: crypto.createHash("sha256").update(JSON.stringify(testSet)).digest("hex"),
   input_cases: results.length,
   output_results: results.length,

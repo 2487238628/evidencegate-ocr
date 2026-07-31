@@ -77,6 +77,12 @@ function validateEvidence(evidence, fieldNames, contractErrors) {
     if (item.confidence != null && (typeof item.confidence !== "number" || item.confidence < 0 || item.confidence > 1)) {
       contractErrors.push(error("INVALID_CONFIDENCE", "Confidence must be null or a number from 0 to 1.", field));
     }
+    if (item.source_text != null && typeof item.source_text !== "string") {
+      contractErrors.push(error("INVALID_SOURCE_TEXT", "Source text must be null or a string.", field));
+    }
+    if (item.match_count != null && (!Number.isInteger(item.match_count) || item.match_count < 0)) {
+      contractErrors.push(error("INVALID_MATCH_COUNT", "Match count must be null or a non-negative integer.", field));
+    }
   }
 }
 
@@ -165,6 +171,8 @@ export function evaluate({ candidateText, schema, expected = null }) {
       source: "model_output",
       locator: evidence.locator ?? null,
       confidence: evidence.confidence ?? null,
+      source_text: evidence.source_text ?? null,
+      match_count: evidence.match_count ?? null,
       contract_errors: fieldContract,
       business_rule_errors: fieldRules,
       expected_mismatches: fieldExpected,
@@ -207,7 +215,7 @@ function main() {
   process.stdout.write(`${json}\n`);
 }
 
-if (import.meta.url === `file:///${process.argv[1].replaceAll("\\", "/")}`) {
+if (process.argv[1] && import.meta.url === `file:///${process.argv[1].replaceAll("\\", "/")}`) {
   try {
     main();
   } catch (err) {

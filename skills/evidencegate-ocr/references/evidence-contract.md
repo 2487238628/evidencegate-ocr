@@ -30,6 +30,8 @@ Use these keys when available:
 
 Keep unavailable evidence as `null`.
 
+For a critical field, set `"locator_required": true` in its schema definition. If its locator is absent, route to `HUMAN_REVIEW` with `EVIDENCE_LOCATOR_REQUIRED`; do not invent a page or bounding box.
+
 ## Minimum run record
 
 - run and case identifier;

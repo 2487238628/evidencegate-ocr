@@ -13,13 +13,15 @@ const results = [];
 
 for (const testCase of testSet.cases) {
   const candidate = structuredClone(testSet.base_candidate);
+  const caseSchema = structuredClone(schema);
+  for (const name of testCase.locator_required_fields ?? []) caseSchema.fields[name].locator_required = true;
   for (const name of testCase.remove ?? []) delete candidate[name];
   Object.assign(candidate, testCase.changes ?? {});
   const payload = testCase.envelope
     ? { fields: candidate, evidence: testCase.evidence ?? {} }
     : candidate;
   const candidateText = testCase.raw ?? JSON.stringify(payload);
-  const result = evaluate({ candidateText, schema, expected: fixture });
+  const result = evaluate({ candidateText, schema: caseSchema, expected: fixture });
   const codes = [
     ...result.contract_errors,
     ...result.business_rule_errors,
@@ -40,7 +42,7 @@ for (const testCase of testSet.cases) {
 const failed = results.filter((item) => !item.passed);
 const report = {
   test_set_id: testSet.test_set_id,
-  gate_version: "0.2.0",
+  gate_version: "0.3.1",
   test_set_sha256: crypto.createHash("sha256").update(JSON.stringify(testSet)).digest("hex"),
   input_cases: results.length,
   output_results: results.length,

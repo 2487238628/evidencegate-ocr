@@ -20,6 +20,7 @@ EvidenceGate OCR treats model output as untrusted input. It is an evaluation and
 - Reject undeclared fields and invalid evidence metadata.
 - Route visible instructions, uncertainty, obstruction and business conflicts to human review.
 - Keep unavailable locator and confidence evidence as `null`.
+- Mark business-critical fields with `"locator_required": true` when source traceability is mandatory; missing locators must route to human review.
 - Never interpret `ACCEPT_CANDIDATE` as business approval.
 
 ## Reporting vulnerabilities

@@ -24,33 +24,23 @@ flowchart LR
 
 The gate is independent of the OCR vendor. Alibaba Cloud Model Studio is the first live model example; the same contract accepts direct JSON or another provider's wrapper.
 
-## Frozen evidence
+## Evaluation matrix and evidence boundary
 
-### Deterministic adversarial suite
+“Frozen” means that inputs, expected routes and hashes were fixed before a rule change. The rows below use different evaluation units and must not be added together as one sample count.
 
-- 30 inputs, 30 outputs;
-- 10 acceptable and 20 unacceptable cases;
-- expected routes: 30/30;
-- dangerous false accepts: 0/20;
-- overblocks: 0/10;
-- runtime: 18.6898 ms;
-- manual corrections: 0.
+| Layer | Evaluation unit | Scale | Result | Boundary |
+|---|---|---:|---|---|
+| Contract regression | structured candidates | 14 | 14/14 | Parser, schema and rule regression only |
+| Deterministic adversarial routing | structured candidates | 30 | 30/30; false accepts 0/20; overblocks 0/10 | Gate logic, not OCR quality |
+| Arts-event portability | explicitly synthetic candidates | 12 | 12/12 | Routing portability, not event truth |
+| Bailian model development | 5 unique synthetic images × 3 rounds | 15 model calls | routes 2/5 → 3/5 → 5/5 | Reused development set, not held-out accuracy |
+| Human correction replay | correction events derived from the image set | 3 | 3/3 applied | Project-evaluator corrections, not independent-user evidence |
 
-These tests validate gate logic, not OCR accuracy.
+Round 3 matched 41/45 labeled fields. All four mismatches came from the right-cropped image: the model returned truncated invoice number, supplier, buyer and PO number as complete values without declaring uncertainty. The frozen answer key routed that sample to review; an unseen document without a comparison value could remain unsafe.
 
-### Real Bailian image suite
+The live model returned no page or bounding-box evidence, so locator coverage is 0/45. EvidenceGate does not invent locations. From v0.3.1, a schema can mark a critical field with `"locator_required": true`; a missing locator then routes to `HUMAN_REVIEW` with `EVIDENCE_LOCATOR_REQUIRED`. This closes the gate-policy gap but does not add locators to the historical Bailian outputs.
 
-Five GPT-image-2 synthetic procurement images were evaluated with `qwen3-vl-plus`: clean, rotated/blurred, stamp obstruction, right crop and in-document prompt injection.
-
-| Round | Expected routes | Dangerous false accepts | Overblocks | Model time | Tokens |
-|---|---:|---:|---:|---:|---:|
-| 1 | 2/5 | 1/3 | 1/2 | 30490.740 ms | 9350 |
-| 2 | 3/5 | 0/3 | 2/2 | 29172.728 ms | 9571 |
-| 3 | 5/5 | 0/3 | 0/2 | 31799.663 ms | 9582 |
-
-Round 3 field matches were 41/45. The model returned no page/bounding-box evidence, so locator coverage is reported as 0/45 rather than invented.
-
-The five-image result is a development result, not production accuracy.
+The public image result is a development trace. It does not establish production OCR accuracy, independent generalization or evidence-localization quality.
 
 ## Human correction
 
@@ -111,8 +101,10 @@ npm run test:arts
 - `tests/adversarial-cases.json`: frozen 30-case inputs;
 - `adversarial-eval-v0.2-results.json`: deterministic outputs and safety rates;
 - `examples/arts-event/cases.json`: frozen 12-case arts-event inputs;
-- `evidence/arts-event-eval-v0.3-results.json`: frozen arts-event routing evidence;
+- `evidence/arts-event-eval-v0.3-results.json`: historical v0.3 synthetic arts-event routing evidence;
+- `evidence/arts-event-eval-v0.3.1-results.json`: current explicitly synthetic fixture routing evidence;
 - `evidence/open-source-readiness-v0.3.json`: clean-clone, CI, timing, failure and correction evidence;
+- evidence/final-adversarial-review-v0.3.1.json: final pre-showcase inputs, outputs, timing, failures and corrections;
 - `samples/images/`: five GPT-image-2 synthetic images;
 - `samples/image-generation-records.json`: prompts, hashes, times and failures;
 - `evidence/procurement-image-suite-three-rounds.json`: three real Bailian iterations;

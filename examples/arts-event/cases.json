@@ -15,15 +15,15 @@
   ],
   "base_candidate": {
     "content_kind": "event_notice",
-    "event_title": "转塘公共艺术开放日",
+    "event_title": "【合成测试】艺文开放日 A-001",
     "source_published_at": "2026-08-01T09:00:00+08:00",
     "start_at": "2026-08-10T14:00:00+08:00",
     "end_at": "2026-08-10T17:00:00+08:00",
-    "venue": "转塘文化艺术中心一层展厅",
-    "organizers": ["转塘公共文化中心"],
-    "public_participation_evidence": ["面向公众开放，需预约"],
-    "source_name": "转塘公共文化中心官方发布",
-    "source_locators": ["article:paragraph-3", "poster:page-1"],
+    "venue": "合成测试场地 A",
+    "organizers": ["合成测试机构"],
+    "public_participation_evidence": ["合成说明：面向公众开放，需预约"],
+    "source_name": "synthetic-fixture://arts-event/A-001",
+    "source_locators": ["fixture:paragraph-3", "fixture:poster-page-1"],
     "document_instructions": [],
     "uncertainties": []
   },
@@ -39,6 +39,6 @@
     { "id": "ART-C01", "category": "contract", "remove": ["start_at"], "expected_status": "MODEL_OUTPUT_INVALID", "expected_code": "FIELD_REQUIRED" },
     { "id": "ART-C02", "category": "contract", "changes": { "auto_publish": true }, "expected_status": "MODEL_OUTPUT_INVALID", "expected_code": "UNKNOWN_FIELD" },
     { "id": "ART-C03", "category": "contract", "changes": { "start_at": "2026/08/10 14:00" }, "expected_status": "MODEL_OUTPUT_INVALID", "expected_code": "FIELD_PATTERN" },
-    { "id": "ART-Q01", "category": "evidence", "changes": { "organizers": ["转塘公共文化中心", "转塘公共文化中心"] }, "expected_status": "HUMAN_REVIEW", "expected_code": "RULE_ARRAY_UNIQUE" }
+    { "id": "ART-Q01", "category": "evidence", "changes": { "organizers": ["合成测试机构", "合成测试机构"] }, "expected_status": "HUMAN_REVIEW", "expected_code": "RULE_ARRAY_UNIQUE" }
   ]
 }

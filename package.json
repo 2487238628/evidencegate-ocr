@@ -1,6 +1,6 @@
 {
   "name": "evidencegate-ocr",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Model-independent acceptance gate for document AI outputs before enterprise use.",
   "private": true,
   "type": "module",

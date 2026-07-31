@@ -7,6 +7,7 @@ export function evaluate({ candidateText, schema, expected = null }) {
   const started = process.hrtime.bigint();
   const baseSchema = { ...schema, rules: (schema.rules ?? []).filter((rule) => baseRuleKinds.has(rule.kind)) };
   const result = evaluateBase({ candidateText, schema: baseSchema, expected });
+  result.gate_version = "0.3.1";
   const contract = [];
   const business = [];
   const values = Object.fromEntries(Object.entries(result.fields).map(([name, field]) => [name, field.value]));
@@ -25,6 +26,9 @@ export function evaluate({ candidateText, schema, expected = null }) {
     }
 
     const locator = result.fields[name]?.locator;
+    if (spec.locator_required === true && locator == null) {
+      business.push(issue("EVIDENCE_LOCATOR_REQUIRED", "A source locator is required for this field.", name));
+    }
     if (locator != null) {
       const pageValid = Number.isInteger(locator.page) && locator.page >= 1;
       const bbox = locator.bbox;

@@ -2,12 +2,12 @@ $ErrorActionPreference = 'Stop'
 
 $required = @(
   'README.md', 'LICENSE', 'SECURITY.md', 'package.json',
-  'README.zh-CN.md', 'CONTRIBUTING.md', 'RELEASE-NOTES-v0.3.0.md',
+  'README.zh-CN.md', 'CONTRIBUTING.md', 'RELEASE-NOTES-v0.3.0.md', 'RELEASE-NOTES-v0.3.1.md',
   'evidence-schema.json', 'evidence-gate-base.mjs', 'evidence-gate.mjs', 'evidence-gate-cli.mjs',
   'tests\adversarial-cases.json', 'adversarial-eval.mjs', 'adversarial-eval-v0.2-results.json',
   'apply-human-corrections.mjs', 'evidence\human-corrections-v0.2.json', 'evidence\human-correction-run-v0.2.json',
   'evidence\procurement-image-suite-three-rounds.json', 'evidence\image-suite-field-metrics.json',
-  'samples\image-generation-records.json', 'evidence\release-validation-run.json',
+  'samples\image-generation-records.json', 'evidence\release-validation-run.json', 'evidence\final-adversarial-review-v0.3.1.json',
   'samples\images\procurement-clean-gpt-image-2.png',
   'samples\images\procurement-rotated-blur-gpt-image-2.png',
   'samples\images\procurement-stamp-overlap-gpt-image-2.png',
@@ -20,6 +20,7 @@ $required = @(
   'examples\arts-event\cases.json',
   'examples\arts-event\eval.mjs',
   'evidence\arts-event-eval-v0.3-results.json',
+  'evidence\arts-event-eval-v0.3.1-results.json',
   'docs\first-user-pilot.zh-CN.md',
   '.github\ISSUE_TEMPLATE\bug_report.yml',
   '.github\ISSUE_TEMPLATE\domain_example.yml',
@@ -50,7 +51,7 @@ if ($corrections.requested_corrections -ne 3 -or $corrections.failed_corrections
 
 $frozenAdversarial = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'adversarial-eval-v0.2-results.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($frozenAdversarial.test_set_sha256 -ne $adversarial.test_set_sha256) { throw 'Adversarial test-set hash drifted.' }
-$frozenArts = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'evidence\arts-event-eval-v0.3-results.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+$frozenArts = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'evidence\arts-event-eval-v0.3.1-results.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($frozenArts.test_set_sha256 -ne $arts.test_set_sha256) { throw 'Arts-event test-set hash drifted.' }
 $frozenCorrections = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'evidence\human-correction-run-v0.2.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($frozenCorrections.source_sha256 -ne $corrections.source_sha256 -or $frozenCorrections.corrections_sha256 -ne $corrections.corrections_sha256) { throw 'Human-correction input hash drifted.' }
@@ -85,7 +86,7 @@ foreach ($file in $textFiles) {
 
 [ordered]@{
   status = 'PASS'
-  release = 'v0.3.0'
+  release = 'v0.3.1'
   required_files = $required.Count
   base_gate_cases = $gate.input_cases
   adversarial_cases = $adversarial.input_cases

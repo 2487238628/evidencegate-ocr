@@ -32,7 +32,8 @@
     { "id": "amount-arithmetic-conflict", "changes": { "total_amount_yuan": 650 }, "expected_status": "HUMAN_REVIEW", "expected_code": "RULE_SUM_EQUALS" },
     { "id": "date-order-conflict", "changes": { "check_in_date": "2026-07-19" }, "expected_status": "HUMAN_REVIEW", "expected_code": "RULE_DATE_ORDER" },
     { "id": "frozen-field-mismatch", "changes": { "test_number": "QH-SYN-WRONG" }, "expected_status": "HUMAN_REVIEW", "expected_code": "EXPECTED_MISMATCH" },
-    { "id": "valid-evidence-envelope", "envelope": true, "evidence": { "total_amount_yuan": { "locator": { "page": 1, "bbox": [0.61, 0.71, 0.82, 0.77] }, "confidence": 0.98 } }, "expected_status": "ACCEPT_CANDIDATE" },
+    { "id": "valid-evidence-envelope", "envelope": true, "locator_required_fields": ["total_amount_yuan"], "evidence": { "total_amount_yuan": { "locator": { "page": 1, "bbox": [0.61, 0.71, 0.82, 0.77] }, "confidence": 0.98 } }, "expected_status": "ACCEPT_CANDIDATE" },
+    { "id": "missing-required-locator", "envelope": true, "locator_required_fields": ["total_amount_yuan"], "expected_status": "HUMAN_REVIEW", "expected_code": "EVIDENCE_LOCATOR_REQUIRED" },
     { "id": "invalid-confidence", "envelope": true, "evidence": { "total_amount_yuan": { "confidence": 1.2 } }, "expected_status": "MODEL_OUTPUT_INVALID", "expected_code": "INVALID_CONFIDENCE" }
   ]
 }

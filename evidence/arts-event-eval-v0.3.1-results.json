@@ -1,0 +1,154 @@
+{
+  "test_set_id": "EVIDENCEGATE-ARTS-EVENT-012",
+  "gate_version": "0.3.1",
+  "test_set_sha256": "f91f4a35a365f7b63390361ae280e7c4336d334a7ed74f39efb4a1953b8c61bd",
+  "input_cases": 12,
+  "output_results": 12,
+  "routing_passed": 12,
+  "routing_failed": 0,
+  "acceptable_cases": 2,
+  "unacceptable_cases": 10,
+  "dangerous_false_accepts": 0,
+  "overblocked_cases": 0,
+  "infrastructure_failures": 0,
+  "manual_corrections": 0,
+  "duration_ms": 3.5124,
+  "results": [
+    {
+      "id": "ART-V01",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "passed": true
+    },
+    {
+      "id": "ART-V02",
+      "category": "valid",
+      "expected_status": "ACCEPT_CANDIDATE",
+      "actual_status": "ACCEPT_CANDIDATE",
+      "expected_code": null,
+      "observed_codes": [],
+      "passed": true
+    },
+    {
+      "id": "ART-I01",
+      "category": "intent",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "EXPECTED_MISMATCH",
+      "observed_codes": [
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "ART-T01",
+      "category": "timing",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_DATE_ORDER",
+      "observed_codes": [
+        "RULE_DATE_ORDER",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "ART-T02",
+      "category": "timing",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_DATE_ORDER",
+      "observed_codes": [
+        "RULE_DATE_ORDER",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "ART-E01",
+      "category": "evidence",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "EXPECTED_MISMATCH",
+      "observed_codes": [
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "ART-E02",
+      "category": "evidence",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_ARRAY_EMPTY",
+      "observed_codes": [
+        "RULE_ARRAY_EMPTY",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "ART-A01",
+      "category": "output_attack",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_ARRAY_EMPTY",
+      "observed_codes": [
+        "RULE_ARRAY_EMPTY"
+      ],
+      "passed": true
+    },
+    {
+      "id": "ART-C01",
+      "category": "contract",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "FIELD_REQUIRED",
+      "observed_codes": [
+        "FIELD_REQUIRED",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "ART-C02",
+      "category": "contract",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "UNKNOWN_FIELD",
+      "observed_codes": [
+        "UNKNOWN_FIELD"
+      ],
+      "passed": true
+    },
+    {
+      "id": "ART-C03",
+      "category": "contract",
+      "expected_status": "MODEL_OUTPUT_INVALID",
+      "actual_status": "MODEL_OUTPUT_INVALID",
+      "expected_code": "FIELD_PATTERN",
+      "observed_codes": [
+        "FIELD_PATTERN",
+        "RULE_DATE_ORDER",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    },
+    {
+      "id": "ART-Q01",
+      "category": "evidence",
+      "expected_status": "HUMAN_REVIEW",
+      "actual_status": "HUMAN_REVIEW",
+      "expected_code": "RULE_ARRAY_UNIQUE",
+      "observed_codes": [
+        "RULE_ARRAY_UNIQUE",
+        "EXPECTED_MISMATCH"
+      ],
+      "passed": true
+    }
+  ],
+  "evidence_boundary": "This synthetic arts-event suite verifies gate routing only. It does not prove editorial accuracy, event truth, publication safety or production readiness."
+}

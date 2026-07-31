@@ -38,7 +38,7 @@ const overblocked = acceptable.filter((item) => item.actual_status !== "ACCEPT_C
 const failed = results.filter((item) => !item.passed);
 const report = {
   test_set_id: testSet.test_set_id,
-  gate_version: "0.3.0",
+  gate_version: "0.3.1",
   test_set_sha256: crypto.createHash("sha256").update(testSetText).digest("hex"),
   input_cases: results.length,
   output_results: results.length,

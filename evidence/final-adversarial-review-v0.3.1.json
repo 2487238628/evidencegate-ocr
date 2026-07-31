@@ -1,0 +1,129 @@
+{
+    "evidence_id":  "EVIDENCEGATE-FINAL-ADVERSARIAL-REVIEW-v0.3.1",
+    "recorded_at":  "2026-07-31T10:14:39.2630895+08:00",
+    "classification":  "synthetic-non-sensitive",
+    "base_commit":  "617b93c8593a7676bd88ba435b90aeafc4e03def",
+    "inputs":  [
+                   {
+                       "command":  "npm test",
+                       "output":  "BLOCKED_BEFORE_TEST",
+                       "exit_code":  1,
+                       "duration_ms":  null,
+                       "duration_status":  "NOT_MEASURED",
+                       "failure":  "Windows PowerShell execution policy blocked npm.ps1."
+                   },
+                   {
+                       "command":  ".\\\\verify-release.ps1",
+                       "output":  "BLOCKED_BEFORE_TEST",
+                       "exit_code":  1,
+                       "duration_ms":  null,
+                       "duration_status":  "NOT_MEASURED",
+                       "failure":  "Windows PowerShell execution policy blocked the local script."
+                   },
+                   {
+                       "command":  "npm.cmd test",
+                       "output":  "PASS",
+                       "exit_code":  0,
+                       "duration_ms":  2284.779,
+                       "contract":  "14/14",
+                       "adversarial":  "30/30",
+                       "arts_event":  "12/12",
+                       "corrections":  "3/3"
+                   },
+                   {
+                       "command":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\\\verify-release.ps1",
+                       "output":  "PASS",
+                       "exit_code":  0,
+                       "duration_ms":  988.71,
+                       "required_files":  39
+                   },
+                   {
+                       "check":  "tracked Git history secret-pattern scan",
+                       "output":  "NO_SECRET_PATTERN_IN_GIT_HISTORY"
+                   },
+                   {
+                       "check":  "local Markdown link resolution",
+                       "output":  "ALL_LOCAL_MARKDOWN_LINKS_RESOLVE"
+                   },
+                   {
+                       "check":  "public JSON and UTF-8 validation",
+                       "output":  "PASS"
+                   }
+               ],
+    "findings":  [
+                     {
+                         "severity":  "BLOCKER",
+                         "finding":  "A missing source locator could remain optional even for a critical field.",
+                         "correction":  "Added locator_required and EVIDENCE_LOCATOR_REQUIRED human routing."
+                     },
+                     {
+                         "severity":  "BLOCKER",
+                         "finding":  "Synthetic arts-event names and source labels could be mistaken for a real event or organization.",
+                         "correction":  "Replaced them with explicit synthetic fixture identifiers."
+                     },
+                     {
+                         "severity":  "HIGH",
+                         "finding":  "The showcase draft described the old one-image prototype and an obsolete Skill name.",
+                         "correction":  "Rewrote it around the canonical repository and current evidence boundary."
+                     },
+                     {
+                         "severity":  "HIGH",
+                         "finding":  "41/45 hid that all four errors were cropped partial strings and locator coverage was 0/45.",
+                         "correction":  "Documented the four fields, failure mechanism and 0/45 locator boundary."
+                     }
+                 ],
+    "manual_corrections":  [
+                               {
+                                   "before":  "npm / direct ps1 invocation",
+                                   "after":  "npm.cmd / explicit PowerShell execution-policy invocation",
+                                   "reason":  "Windows execution-policy compatibility; no business data changed."
+                               },
+                               {
+                                   "before":  "realistic synthetic event and source names",
+                                   "after":  "unmistakable synthetic fixture identifiers",
+                                   "reason":  "Prevent false provenance."
+                               },
+                               {
+                                   "before":  "missing locator accepted when schema did not distinguish critical fields",
+                                   "after":  "schema-configurable required locator routes to human review",
+                                   "reason":  "Preserve evidence-first boundary."
+                               }
+                           ],
+    "outputs":  {
+                    "release":  "v0.3.1",
+                    "contract_cases":  14,
+                    "contract_passed":  14,
+                    "adversarial_cases":  30,
+                    "adversarial_passed":  30,
+                    "dangerous_false_accepts":  0,
+                    "acceptable_overblocks":  0,
+                    "arts_event_cases":  12,
+                    "arts_event_passed":  12,
+                    "live_image_unique_inputs":  5,
+                    "historical_model_calls":  15,
+                    "historical_field_matches":  "41/45",
+                    "historical_locator_coverage":  "0/45",
+                    "human_required":  true,
+                    "erp_write_allowed":  false
+                },
+    "source_hashes":  {
+                          "gate":  "4641b2f3a38fef58a1eb23cadb77cdd9754fee96b01a073e2a9aa43d8d308c85",
+                          "contract_cases":  "b48580630915a5a47bb1934e357be4cb74d70935744e845fc51a112aa8d525c2",
+                          "arts_cases":  "f91f4a35a365f7b63390361ae280e7c4336d334a7ed74f39efb4a1953b8c61bd",
+                          "showcase_draft":  "2c14aa17abe347ef662e227faa68bf1890c96f9012df69abfe379095552de661"
+                      },
+    "external_state":  {
+                           "showcase_issue":  "https://github.com/modelstudioai/modelstudioai.github.io/issues/54",
+                           "issue_status":  "OPEN",
+                           "issue_body_status":  "OUTDATED_NOT_MUTATED_BY_THIS_REVIEW",
+                           "canonical_repository":  "https://github.com/2487238628/evidencegate-ocr"
+                       },
+    "evidence_boundary":  "PASS covers deterministic synthetic suites and recorded historical Bailian development calls. It does not prove production OCR accuracy, locator quality, independent-user value, SLA or ROI.",
+    "final_validation":  {
+                             "command":  "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\\\verify-release.ps1",
+                             "output":  "PASS",
+                             "exit_code":  0,
+                             "duration_ms":  929.985,
+                             "required_files":  41
+                         }
+}

@@ -67,7 +67,8 @@ function send(response, status, body, type = "application/json; charset=utf-8") 
   response.end(body);
 }
 function staticFile(urlPath) {
-  const demoAsset = ["/app.js", "/styles.css"].includes(urlPath);\n  const relative = urlPath === "/" ? "demo/index.html" : demoAsset ? `demo/${urlPath.slice(1)}` : urlPath.replace(/^\//, "");
+  const demoAsset = ["/app.js", "/styles.css"].includes(urlPath);
+  const relative = urlPath === "/" ? "demo/index.html" : demoAsset ? `demo/${urlPath.slice(1)}` : urlPath.replace(/^\//, "");
   const absolute = path.resolve(root, relative);
   const allowed = absolute.startsWith(`${demoRoot}${path.sep}`) || absolute.startsWith(`${path.join(root, "samples", "images")}${path.sep}`);
   return allowed ? absolute : null;

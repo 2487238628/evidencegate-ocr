@@ -1,0 +1,85 @@
+{
+  "run_at": "2026-08-01T13:51:16.179Z",
+  "endpoint_host": "dashscope.aliyuncs.com",
+  "model": "qwen3-tts-flash",
+  "voice": "Cherry",
+  "inputs": 7,
+  "outputs": 7,
+  "failures": 0,
+  "manual_corrections": 0,
+  "elapsed_ms": 20147.978,
+  "results": [
+    {
+      "slide": 1,
+      "input_sha256": "82d03b821dde4cfccd441b150ae73df141feda060fe7e46bc0bed276896ca5b3",
+      "request_id": "9a9ae4b2-2d6e-9ca5-8413-378464a87646",
+      "characters": 84,
+      "bytes": 418604,
+      "output_sha256": "92400141d356a32675aef1c9a2d9e379aa1b1320fc252358638a04fbf49a05e1",
+      "elapsed_ms": 2249.86,
+      "failure": null
+    },
+    {
+      "slide": 2,
+      "input_sha256": "2eed1ed55fda86fba25142725758f0a61690c182152be3bb93a2f588e0dfec88",
+      "request_id": "71abb40a-f5d3-9946-9ac1-09964acff46e",
+      "characters": 132,
+      "bytes": 618284,
+      "output_sha256": "4ac9fe76622204bb7bba6f96443f0c2d0f9f5659e97e690467a8d6c8dd0f2bd3",
+      "elapsed_ms": 3108.493,
+      "failure": null
+    },
+    {
+      "slide": 3,
+      "input_sha256": "d095207a4611a7e52f358e48e65ad18640e1afb3ebac6a46fe8a265a3e6cfd04",
+      "request_id": "0f761378-9336-940b-b928-d4605451cc36",
+      "characters": 135,
+      "bytes": 710444,
+      "output_sha256": "f89c6be76cf8e1f204a88e344dec8690642c813571a7d69df89ad7107fa1c830",
+      "elapsed_ms": 3448.934,
+      "failure": null
+    },
+    {
+      "slide": 4,
+      "input_sha256": "3e9638daf033f31d4cbb7371c201157f1fb07c036fbea87b69e667cfa2a68c00",
+      "request_id": "a98bfc3f-40fb-976e-89ce-e65bf8b3333b",
+      "characters": 99,
+      "bytes": 460844,
+      "output_sha256": "2f35a084eae9b045fcc56d37a97973c42d1dc4cbe45dbf613d9b179c90daabea",
+      "elapsed_ms": 2575.547,
+      "failure": null
+    },
+    {
+      "slide": 5,
+      "input_sha256": "ac6f055580249a49b77b4153aa2374f941fb0ffb796d9639c1a5a7b8aff16320",
+      "request_id": "bf7546c1-c094-99f6-afff-f4b2542ce245",
+      "characters": 110,
+      "bytes": 556844,
+      "output_sha256": "61cfc34c519467ea92f42515bec15ccc2effbf81013e3601418ee814e02e2fcd",
+      "elapsed_ms": 2623.04,
+      "failure": null
+    },
+    {
+      "slide": 6,
+      "input_sha256": "15327836199ce059a7a5ca3c945d740905b5ca3ff9f47756fce49839d3b44ba6",
+      "request_id": "ec1ae23a-70c1-975f-aacf-128661cdc193",
+      "characters": 96,
+      "bytes": 545324,
+      "output_sha256": "0f1008546db1310a81f9538b7d19efe8ac53d07da28a3394e25aaa8ceab8acc9",
+      "elapsed_ms": 2772.726,
+      "failure": null
+    },
+    {
+      "slide": 7,
+      "input_sha256": "5a06f1d16f2bb8e206856fc72e9309c05661fb0da3f2d4f8b7da9c8a1bb32922",
+      "request_id": "ec4e82dc-71ab-900b-a424-af6fc9256aa7",
+      "characters": 147,
+      "bytes": 752684,
+      "output_sha256": "43d0c280cdc1041f0e8d4eb7eafb0e26b840b557cd41a008a6980f13ce306244",
+      "elapsed_ms": 3369.135,
+      "failure": null
+    }
+  ],
+  "claim_boundary": "Public hackathon narration only. This run does not measure OCR accuracy or production readiness."
+}
+

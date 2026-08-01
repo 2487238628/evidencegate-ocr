@@ -1,0 +1,69 @@
+{
+  "run_id": "EVIDENCEGATE-HACKATHON-DEMO-2026-08-01",
+  "input": {
+    "scenarios": ["clean", "right-crop", "prompt-injection"],
+    "source": "saved qwen3.5-ocr v0.4.0 development records",
+    "gate": "evidence-gate.mjs evaluate export",
+    "business_write_enabled": false
+  },
+  "output": {
+    "routes": ["ACCEPT_CANDIDATE", "HUMAN_REVIEW", "HUMAN_REVIEW"],
+    "scenario_count": 3,
+    "field_count_per_scenario": 9,
+    "bbox_click_result": 1,
+    "mobile_horizontal_overflow_px": 0
+  },
+  "timing_ms": {
+    "demo_self_check_wall": 220.096,
+    "full_repository_test_wall": 3263.51,
+    "release_verification_wall": 1391.32
+  },
+  "failures": [
+    {
+      "stage": "file_patch",
+      "error": "Windows sandbox helper_unknown_error when updating an existing file",
+      "correction": "used the current Codex bundled apply-patch executable; package shortcut, favicon and private-name cleanup applied"
+    },
+    {
+      "stage": "browser_cli",
+      "error": "playwright-cli executable unavailable",
+      "correction": "used the bundled Playwright library"
+    },
+    {
+      "stage": "browser_runtime",
+      "error": "bundled Chromium executable unavailable",
+      "correction": "used installed Microsoft Edge"
+    },
+    {
+      "stage": "browser_console",
+      "error": "one favicon request returned 404 on the first desktop run",
+      "correction": "added an explicit empty favicon; final desktop and mobile consoles had zero errors or warnings"
+    },
+    {
+      "stage": "windows_startup",
+      "error": "npm.ps1 was blocked by the local execution policy",
+      "correction": "used npm.cmd with the same Node installation"
+    },
+    {
+      "stage": "local_port",
+      "error": "EADDRINUSE on 127.0.0.1:4173 from the previous demo process",
+      "correction": "verified the listener was node.exe PID 42108, terminated only that process, then restarted successfully"
+    }
+  ],
+  "business_manual_corrections": 0,
+  "operational_corrections": 6,
+  "checks": {
+    "demo_self_check": "PASS",
+    "full_repository_test": "PASS",
+    "release_verification": "PASS",
+    "desktop_scenarios": 3,
+    "desktop_field_buttons": 9,
+    "desktop_route_after_crop_selection": "HUMAN_REVIEW",
+    "desktop_bbox_after_field_click": 1,
+    "desktop_console_errors_or_warnings": 0,
+    "mobile_console_errors_or_warnings": 0,
+    "mobile_horizontal_overflow_px": 0,
+    "secret_and_private_host_scan": "NO_MATCH"
+  },
+  "boundary": "Saved synthetic development evidence replay; not a live model call, independent holdout, production accuracy, SLA, ROI, or autonomous business-action claim."
+}

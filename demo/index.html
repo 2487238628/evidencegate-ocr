@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="EvidenceGate：文档 AI 输出进入业务系统前的可复核证据门。">
+  <title>EvidenceGate · 证据门</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/demo/styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="wordmark" href="https://github.com/endtree-FDE/evidencegate-ocr">EVIDENCEGATE <span>v0.4.0</span></a>
+    <p>已保存百炼调用 · 本地门禁重放 · 不写业务状态</p>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div><p class="eyebrow">DOCUMENT AI / ACTION BOUNDARY</p><h1 id="page-title">模型读完了，<br><em>业务能信吗？</em></h1></div>
+      <p class="hero-copy">EvidenceGate 不替代 OCR。它把模型输出先视为候选，再检查结构、字段证据与确定性规则，把不确定情况交回给人。</p>
+    </section>
+    <section class="flow" aria-label="系统数据流"><span>01 文档</span><b>→</b><span>02 百炼 OCR</span><b>→</b><strong>03 EvidenceGate</strong><b>→</b><span>04 人工决定</span></section>
+    <nav class="scenario-tabs" aria-label="选择测试场景"></nav>
+    <section class="inspection" aria-live="polite">
+      <div class="document-column">
+        <div class="panel-heading"><div><span class="step">A</span><h2>原始证据</h2></div><span class="mode">回放模式</span></div>
+        <div class="document-stage"><img id="document-image" alt="合成采购票据原图"><div id="bbox-layer" aria-hidden="true"></div></div>
+        <p class="hash" id="input-hash"></p>
+      </div>
+      <div class="verdict-column">
+        <div class="panel-heading"><div><span class="step">B</span><h2>门禁结论</h2></div><span id="status-badge"></span></div>
+        <p class="scenario-note" id="scenario-note"></p>
+        <div class="metrics" id="metrics"></div>
+        <div class="issue-box" id="issue-box"></div>
+        <div class="field-list" id="field-list"></div>
+        <p class="boundary" id="boundary"></p>
+      </div>
+    </section>
+    <section class="promise" aria-label="责任边界"><div><span>始终</span><strong>人工最终决定</strong></div><div><span>始终</span><strong>业务写入关闭</strong></div><div><span>公开证据</span><strong>输入 · 输出 · 耗时 · 失败</strong></div></section>
+  </main>
+  <footer><p>公开合成开发证据，不代表生产准确率、SLA、ROI 或无人审批安全。</p><a href="https://github.com/endtree-FDE/evidencegate-ocr">查看源码与完整运行记录 ↗</a></footer>
+  <script type="module" src="/demo/app.js"></script>
+</body>
+</html>

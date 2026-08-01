@@ -1,6 +1,8 @@
 # EvidenceGate Judge Demo
 
-This local replay demo needs Node.js 20+ and no API key or package install.\n\nPublic replay: <https://endtree-fde.github.io/evidencegate-ocr/>
+This local replay demo needs Node.js 20+ and no API key or package install.
+
+Public replay: <https://endtree-fde.github.io/evidencegate-ocr/>
 
 ```powershell
 node demo/server.mjs
@@ -16,4 +18,6 @@ Run the smallest demo check:
 node demo/test-demo.mjs
 ```
 
-Expected routes: `ACCEPT_CANDIDATE`, `HUMAN_REVIEW`, `HUMAN_REVIEW`.\n\n`npm run build:demo` creates the same key-free static replay in `demo/dist` for GitHub Pages.
+Expected routes: `ACCEPT_CANDIDATE`, `HUMAN_REVIEW`, `HUMAN_REVIEW`.
+
+`npm run build:demo` creates the same key-free static replay in `demo/dist` for GitHub Pages.

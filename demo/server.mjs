@@ -57,7 +57,7 @@ export function buildScenario(id) {
       failures: record.failures.length,
       manual_corrections: record.manual_corrections
     },
-    boundary: "保存的百炼真实调用结果，由当前 v0.4.0 门禁重新执行；不是实时模型调用，也不代表生产准确率。"
+    boundary: "保存的百炼真实调用结果，由当前 v0.4.1 门禁重新执行；不是实时模型调用，也不代表生产准确率。"
   };
 }
 
@@ -76,7 +76,7 @@ function staticFile(urlPath) {
 export function createServer() {
   return http.createServer((request, response) => {
     const url = new URL(request.url, "http://localhost");
-    if (url.pathname === "/health") return send(response, 200, JSON.stringify({ status: "ok", version: "0.4.0" }));
+    if (url.pathname === "/health") return send(response, 200, JSON.stringify({ status: "ok", version: "0.4.1" }));
     if (url.pathname === "/api/scenarios" || url.pathname === "/scenarios.json") return send(response, 200, JSON.stringify(Object.keys(scenarios).map((id) => buildScenario(id))));
     const file = staticFile(url.pathname);
     if (!file || !fs.existsSync(file) || !fs.statSync(file).isFile()) return send(response, 404, JSON.stringify({ error: "NOT_FOUND" }));

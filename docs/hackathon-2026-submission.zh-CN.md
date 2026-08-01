@@ -118,6 +118,6 @@ node demo/server.mjs
 - 技术平台：`阿里云百炼 + Node.js`
 - 项目地址：`https://github.com/endtree-FDE/evidencegate-ocr`
 - 社区案例：`https://github.com/modelstudioai/modelstudioai.github.io/issues/54`
-- 版本：`v0.4.0 + hackathon demo`，不要填写 `v0.5.0`
+- 版本：`v0.4.1 + hackathon demo`，不要填写 `v0.5.0`
 
 姓名、手机号、身份证明等个人字段只在报名页面现场填写，不进入公开仓库。

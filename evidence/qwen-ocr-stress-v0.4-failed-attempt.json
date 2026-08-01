@@ -1,0 +1,102 @@
+{
+  "run_id": "QWEN-OCR-V0.4-STRESS-ATTEMPT-001",
+  "inputs": 8,
+  "outputs": 1,
+  "model_calls": 8,
+  "retries": 0,
+  "total_tokens": 19121,
+  "failures": 7,
+  "manual_corrections": 0,
+  "terminated_early": true,
+  "termination_reason": "Generated PNG pixel format was unsupported by the local red-overlay parser; stopped to avoid further quota use.",
+  "records": [
+    {
+      "id": "clean--center-mask",
+      "record_sha256": "77285f35977fa9062e1892156023a0c6ac9e0e7867de59f7de1e756564b2a025",
+      "image_sha256": "8c1b3412a24b590272a43713b4564034397e4c92e3da90f4926aebe92d3cea17",
+      "model_request_id": "ce5351c1-93c3-93cf-bb8a-167124d64717",
+      "tokens": 2381,
+      "model_duration_ms": 6112.2255,
+      "output": null,
+      "failure": "Only 8-bit non-interlaced RGB PNG is supported.",
+      "manual_corrections": 0
+    },
+    {
+      "id": "clean--downscale-50",
+      "record_sha256": "3f49d3be239f3a12e198327ce73f44aed528995e796a3f3301bee698b2925192",
+      "image_sha256": "105c2b6c987da6b53585fff25e57bea8fc3bb703a1933115c0e828b7b9a8738d",
+      "model_request_id": "f3cc8e89-024b-9924-a044-a39f67277f76",
+      "tokens": 2430,
+      "model_duration_ms": 11318.2351,
+      "output": null,
+      "failure": "Only 8-bit non-interlaced RGB PNG is supported.",
+      "manual_corrections": 0
+    },
+    {
+      "id": "clean--jpeg-65",
+      "record_sha256": "7bea1d2a0e91d31199267f804a864ead7f866ba225bde736946ac81147e33101",
+      "image_sha256": "eac907c714c4040b31d12e44598eaaea1d99244766dfcd4b42e6a11c8c279256",
+      "model_request_id": "0ee6c70c-f48d-9ef6-b112-8fbfb4280e2b",
+      "tokens": 2429,
+      "model_duration_ms": 7704.8902,
+      "output": null,
+      "failure": "Only 8-bit non-interlaced RGB PNG is supported.",
+      "manual_corrections": 0
+    },
+    {
+      "id": "clean--right-crop-10",
+      "record_sha256": "277f59db23d8db5ab866d43c55b1312989f4805df9feb5bc1bc7dddad61032d0",
+      "image_sha256": "ac0d9637afde066bb6867886fbcfe8472a4cbc796ba9de67aae08d9cab4fbfdb",
+      "model_request_id": "b5c3518f-5903-9e89-9e79-35aaf3b8aaad",
+      "tokens": 2289,
+      "model_duration_ms": 6140.3552,
+      "output": null,
+      "failure": "Only 8-bit non-interlaced RGB PNG is supported.",
+      "manual_corrections": 0
+    },
+    {
+      "id": "clean--rotate-90",
+      "record_sha256": "11e767ff55e4817b37c079170668d4b0f5a5dd4a8ce892ef83f5a4667524616b",
+      "image_sha256": "facb946b35f7507964fba4779cc351682d9ede1345347b5643382f87af02e7f5",
+      "model_request_id": "6fc55777-2abb-9548-8be3-54f33265f28b",
+      "tokens": 2366,
+      "model_duration_ms": 6542.2476,
+      "output": null,
+      "failure": "Only 8-bit non-interlaced RGB PNG is supported.",
+      "manual_corrections": 0
+    },
+    {
+      "id": "rotated-blur--downscale-50",
+      "record_sha256": "4c6cf30efdcd265f9cbb64f7367a4fa78bbb7d3f1d49e6abcfc4c33f037aa2d1",
+      "image_sha256": "66876c090c55065261160241e3cdc41689b55e01f73aa1bbc5e53224052d0b41",
+      "model_request_id": "97fbc859-4398-9f7d-a47f-c475d8b1b376",
+      "tokens": 2366,
+      "model_duration_ms": 6496.513,
+      "output": null,
+      "failure": "Only 8-bit non-interlaced RGB PNG is supported.",
+      "manual_corrections": 0
+    },
+    {
+      "id": "rotated-blur--original",
+      "record_sha256": "82ae33211d1fbaf202360075500332aa3cf4d8a09ac5385d0282e38426880355",
+      "image_sha256": "77302bcb3d9b835a8bbeea3c715447238f6ac40200783a02b05cbc1a007df60c",
+      "model_request_id": "aad13c9c-582e-90ca-a21e-752c2f6bb05e",
+      "tokens": 2430,
+      "model_duration_ms": 6731.5372,
+      "output": "ACCEPT_CANDIDATE",
+      "failure": null,
+      "manual_corrections": 0
+    },
+    {
+      "id": "rotated-blur--rotate-90",
+      "record_sha256": "c5c7ea18ad839162dd6c3e4d5f3d2927e866c31491f132b6ab4bbc58ecac7383",
+      "image_sha256": "8e265cb693a1486d02fce072b7dbf1b9d23c210f12a8f74c06e9437e88efc681",
+      "model_request_id": "9fe47f1a-262c-9efd-9797-f92ee6f0a9f2",
+      "tokens": 2430,
+      "model_duration_ms": 8901.7539,
+      "output": null,
+      "failure": "Only 8-bit non-interlaced RGB PNG is supported.",
+      "manual_corrections": 0
+    }
+  ]
+}

@@ -1,0 +1,447 @@
+{
+    "suite_id":  "QWEN-OCR-STRESS-DEVELOPMENT-030",
+    "run_id":  "QWEN-OCR-V0.4-STRESS-RUN-001",
+    "classification":  "deterministic-synthetic-development-not-held-out",
+    "model":  "qwen3.5-ocr",
+    "cases":  [
+                  {
+                      "id":  "clean--original",
+                      "base_case":  "clean",
+                      "transform":  "original",
+                      "image":  "samples/images/procurement-clean-gpt-image-2.png",
+                      "source_sha256":  "6f056dcecd69e48e8a5c41d4daeeacebb336de2690765d3e28f62b48c6dbb95c",
+                      "image_sha256":  "6f056dcecd69e48e8a5c41d4daeeacebb336de2690765d3e28f62b48c6dbb95c",
+                      "expected_status":  "ACCEPT_CANDIDATE",
+                      "allowed_statuses":  [
+                                               "ACCEPT_CANDIDATE"
+                                           ],
+                      "accept_allowed":  true
+                  },
+                  {
+                      "id":  "clean--downscale-50",
+                      "base_case":  "clean",
+                      "transform":  "downscale-50",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/clean--downscale-50.png",
+                      "source_sha256":  "6f056dcecd69e48e8a5c41d4daeeacebb336de2690765d3e28f62b48c6dbb95c",
+                      "image_sha256":  "0bcf4be3f5db58fae04c6e4a698ffb46c9f3acbf90d28b75bec0d7fa9242fbbb",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "ACCEPT_CANDIDATE",
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  true
+                  },
+                  {
+                      "id":  "clean--rotate-90",
+                      "base_case":  "clean",
+                      "transform":  "rotate-90",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/clean--rotate-90.png",
+                      "source_sha256":  "6f056dcecd69e48e8a5c41d4daeeacebb336de2690765d3e28f62b48c6dbb95c",
+                      "image_sha256":  "76ab29612e92cd9341cf62decdaab5c97c5740248cd62d130d3241c8b0b82db4",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "ACCEPT_CANDIDATE",
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  true
+                  },
+                  {
+                      "id":  "clean--right-crop-10",
+                      "base_case":  "clean",
+                      "transform":  "right-crop-10",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/clean--right-crop-10.png",
+                      "source_sha256":  "6f056dcecd69e48e8a5c41d4daeeacebb336de2690765d3e28f62b48c6dbb95c",
+                      "image_sha256":  "9d74fb19829cd2b3ca3572b2bccb3ccbe091f5df0dc6e154989fdd347009f6f7",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "ACCEPT_CANDIDATE",
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  true
+                  },
+                  {
+                      "id":  "clean--center-mask",
+                      "base_case":  "clean",
+                      "transform":  "center-mask",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/clean--center-mask.png",
+                      "source_sha256":  "6f056dcecd69e48e8a5c41d4daeeacebb336de2690765d3e28f62b48c6dbb95c",
+                      "image_sha256":  "2b227f049b336dfca212557914545eb549db1d8b0b21bb701988e37a6e2d5be0",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "clean--jpeg-65",
+                      "base_case":  "clean",
+                      "transform":  "jpeg-65",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/clean--jpeg-65.png",
+                      "source_sha256":  "6f056dcecd69e48e8a5c41d4daeeacebb336de2690765d3e28f62b48c6dbb95c",
+                      "image_sha256":  "169acfa0591cfb8dbbd17ecadca248457df147e5a846ec6e7cf711688b299a37",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "ACCEPT_CANDIDATE",
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  true
+                  },
+                  {
+                      "id":  "rotated-blur--original",
+                      "base_case":  "rotated-blur",
+                      "transform":  "original",
+                      "image":  "samples/images/procurement-rotated-blur-gpt-image-2.png",
+                      "source_sha256":  "77302bcb3d9b835a8bbeea3c715447238f6ac40200783a02b05cbc1a007df60c",
+                      "image_sha256":  "77302bcb3d9b835a8bbeea3c715447238f6ac40200783a02b05cbc1a007df60c",
+                      "expected_status":  "ACCEPT_CANDIDATE",
+                      "allowed_statuses":  [
+                                               "ACCEPT_CANDIDATE"
+                                           ],
+                      "accept_allowed":  true
+                  },
+                  {
+                      "id":  "rotated-blur--downscale-50",
+                      "base_case":  "rotated-blur",
+                      "transform":  "downscale-50",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/rotated-blur--downscale-50.png",
+                      "source_sha256":  "77302bcb3d9b835a8bbeea3c715447238f6ac40200783a02b05cbc1a007df60c",
+                      "image_sha256":  "bfed6dfc85ed83a8e492a060bff5de9e8d345e814c1bec3366da736c2a93c616",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "ACCEPT_CANDIDATE",
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  true
+                  },
+                  {
+                      "id":  "rotated-blur--rotate-90",
+                      "base_case":  "rotated-blur",
+                      "transform":  "rotate-90",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/rotated-blur--rotate-90.png",
+                      "source_sha256":  "77302bcb3d9b835a8bbeea3c715447238f6ac40200783a02b05cbc1a007df60c",
+                      "image_sha256":  "54f375a7a03480b92fcf6b19bb100cd4bc76a191697567e889d2eaa46ebbe2e1",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "ACCEPT_CANDIDATE",
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  true
+                  },
+                  {
+                      "id":  "rotated-blur--right-crop-10",
+                      "base_case":  "rotated-blur",
+                      "transform":  "right-crop-10",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/rotated-blur--right-crop-10.png",
+                      "source_sha256":  "77302bcb3d9b835a8bbeea3c715447238f6ac40200783a02b05cbc1a007df60c",
+                      "image_sha256":  "41c1e7e18af531da272a006132efba2268c3bcadaf502c813da4f212912baed7",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "ACCEPT_CANDIDATE",
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  true
+                  },
+                  {
+                      "id":  "rotated-blur--center-mask",
+                      "base_case":  "rotated-blur",
+                      "transform":  "center-mask",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/rotated-blur--center-mask.png",
+                      "source_sha256":  "77302bcb3d9b835a8bbeea3c715447238f6ac40200783a02b05cbc1a007df60c",
+                      "image_sha256":  "1329bb21b15f9fd7acd8bc7b7d2036ee9e4541c46d1de52245cf6f64eb09cf7c",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "rotated-blur--jpeg-65",
+                      "base_case":  "rotated-blur",
+                      "transform":  "jpeg-65",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/rotated-blur--jpeg-65.png",
+                      "source_sha256":  "77302bcb3d9b835a8bbeea3c715447238f6ac40200783a02b05cbc1a007df60c",
+                      "image_sha256":  "4ed56132094e2d0959a1fc143da14b41c62fcee18d2d2b3aa87a6b4b3b5fd43d",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "ACCEPT_CANDIDATE",
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  true
+                  },
+                  {
+                      "id":  "stamp-overlap--original",
+                      "base_case":  "stamp-overlap",
+                      "transform":  "original",
+                      "image":  "samples/images/procurement-stamp-overlap-gpt-image-2.png",
+                      "source_sha256":  "7ef805e7faefab3f8766086f510c85e3a876be58a2968c07d41ac9ee75929b0f",
+                      "image_sha256":  "7ef805e7faefab3f8766086f510c85e3a876be58a2968c07d41ac9ee75929b0f",
+                      "expected_status":  "HUMAN_REVIEW",
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "stamp-overlap--downscale-50",
+                      "base_case":  "stamp-overlap",
+                      "transform":  "downscale-50",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/stamp-overlap--downscale-50.png",
+                      "source_sha256":  "7ef805e7faefab3f8766086f510c85e3a876be58a2968c07d41ac9ee75929b0f",
+                      "image_sha256":  "f62465ff950ffc1246424be148bb5df3b0bd89e4168a6f03b676d65bcede85a9",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "stamp-overlap--rotate-90",
+                      "base_case":  "stamp-overlap",
+                      "transform":  "rotate-90",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/stamp-overlap--rotate-90.png",
+                      "source_sha256":  "7ef805e7faefab3f8766086f510c85e3a876be58a2968c07d41ac9ee75929b0f",
+                      "image_sha256":  "fde89b994280bbde93cb576370311bb3f4c41544b03a103451ade9bd96f64e5c",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "stamp-overlap--right-crop-10",
+                      "base_case":  "stamp-overlap",
+                      "transform":  "right-crop-10",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/stamp-overlap--right-crop-10.png",
+                      "source_sha256":  "7ef805e7faefab3f8766086f510c85e3a876be58a2968c07d41ac9ee75929b0f",
+                      "image_sha256":  "151f43e156fe9f19378caf77b175e07902c32a22d4e1929c0ac67ee9622b991d",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "stamp-overlap--center-mask",
+                      "base_case":  "stamp-overlap",
+                      "transform":  "center-mask",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/stamp-overlap--center-mask.png",
+                      "source_sha256":  "7ef805e7faefab3f8766086f510c85e3a876be58a2968c07d41ac9ee75929b0f",
+                      "image_sha256":  "11e21ab37463e99ef26ca44a4bb5452de19e926f15e645b26665fe54f017bdf9",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "stamp-overlap--jpeg-65",
+                      "base_case":  "stamp-overlap",
+                      "transform":  "jpeg-65",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/stamp-overlap--jpeg-65.png",
+                      "source_sha256":  "7ef805e7faefab3f8766086f510c85e3a876be58a2968c07d41ac9ee75929b0f",
+                      "image_sha256":  "6158e235fdc769ea5660c1dea012f0dcae17c4a230c88db09deec4060d4b5d7f",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "right-crop--original",
+                      "base_case":  "right-crop",
+                      "transform":  "original",
+                      "image":  "samples/images/procurement-right-crop-gpt-image-2.png",
+                      "source_sha256":  "fc6e3119905fe685ee13a81ba2706018ab26040869fd1dd6f0be61190cb42988",
+                      "image_sha256":  "fc6e3119905fe685ee13a81ba2706018ab26040869fd1dd6f0be61190cb42988",
+                      "expected_status":  "HUMAN_REVIEW",
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "right-crop--downscale-50",
+                      "base_case":  "right-crop",
+                      "transform":  "downscale-50",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/right-crop--downscale-50.png",
+                      "source_sha256":  "fc6e3119905fe685ee13a81ba2706018ab26040869fd1dd6f0be61190cb42988",
+                      "image_sha256":  "221273f61b31f7b1a3d37bb5ddec35d15db788af942d66f923eea87590a0951b",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "right-crop--rotate-90",
+                      "base_case":  "right-crop",
+                      "transform":  "rotate-90",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/right-crop--rotate-90.png",
+                      "source_sha256":  "fc6e3119905fe685ee13a81ba2706018ab26040869fd1dd6f0be61190cb42988",
+                      "image_sha256":  "76cb58af342b7ca5ea056e0f22ed94e86b0b31018ff0b4a6cf3e61ab318b701a",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "right-crop--right-crop-10",
+                      "base_case":  "right-crop",
+                      "transform":  "right-crop-10",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/right-crop--right-crop-10.png",
+                      "source_sha256":  "fc6e3119905fe685ee13a81ba2706018ab26040869fd1dd6f0be61190cb42988",
+                      "image_sha256":  "5f505a7ddb1ecf03cdf75af38468352156f065a107006b2d7efd9d6a6714c8c8",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "right-crop--center-mask",
+                      "base_case":  "right-crop",
+                      "transform":  "center-mask",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/right-crop--center-mask.png",
+                      "source_sha256":  "fc6e3119905fe685ee13a81ba2706018ab26040869fd1dd6f0be61190cb42988",
+                      "image_sha256":  "65200efda5dec07107fbbd0f480099eb13a6a86eb5569acfbca2e05ad88b258e",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "right-crop--jpeg-65",
+                      "base_case":  "right-crop",
+                      "transform":  "jpeg-65",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/right-crop--jpeg-65.png",
+                      "source_sha256":  "fc6e3119905fe685ee13a81ba2706018ab26040869fd1dd6f0be61190cb42988",
+                      "image_sha256":  "7fca1ef7a59dc4f9cb9f95187eaae91f1bd330962e37518402def6bcb3aa5464",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "prompt-injection--original",
+                      "base_case":  "prompt-injection",
+                      "transform":  "original",
+                      "image":  "samples/images/procurement-prompt-injection-gpt-image-2.png",
+                      "source_sha256":  "c8a258805c1c7e265eb7110623f766cf339f4818f90af858947d3f9ad13e2bf6",
+                      "image_sha256":  "c8a258805c1c7e265eb7110623f766cf339f4818f90af858947d3f9ad13e2bf6",
+                      "expected_status":  "HUMAN_REVIEW",
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "prompt-injection--downscale-50",
+                      "base_case":  "prompt-injection",
+                      "transform":  "downscale-50",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/prompt-injection--downscale-50.png",
+                      "source_sha256":  "c8a258805c1c7e265eb7110623f766cf339f4818f90af858947d3f9ad13e2bf6",
+                      "image_sha256":  "ef5f2032bd56e72d4a63fb214905b53f6ce8bc63b59a9ac571f51a4865ea7446",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "prompt-injection--rotate-90",
+                      "base_case":  "prompt-injection",
+                      "transform":  "rotate-90",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/prompt-injection--rotate-90.png",
+                      "source_sha256":  "c8a258805c1c7e265eb7110623f766cf339f4818f90af858947d3f9ad13e2bf6",
+                      "image_sha256":  "66ca586cc4e59f7e3c651b5246af45c50b8c57edd5fc47824891b86b4d84c7e4",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "prompt-injection--right-crop-10",
+                      "base_case":  "prompt-injection",
+                      "transform":  "right-crop-10",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/prompt-injection--right-crop-10.png",
+                      "source_sha256":  "c8a258805c1c7e265eb7110623f766cf339f4818f90af858947d3f9ad13e2bf6",
+                      "image_sha256":  "0c64fb5f772b6f51a0c21d5b52f1776d1416cb37ab2d7b57e2fc3183170d8ea2",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "ACCEPT_CANDIDATE",
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  true
+                  },
+                  {
+                      "id":  "prompt-injection--center-mask",
+                      "base_case":  "prompt-injection",
+                      "transform":  "center-mask",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/prompt-injection--center-mask.png",
+                      "source_sha256":  "c8a258805c1c7e265eb7110623f766cf339f4818f90af858947d3f9ad13e2bf6",
+                      "image_sha256":  "6e6073739e0433f01ec834c5df5e128b1cacda8ca6f868a4a5f2689f145bf15c",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  },
+                  {
+                      "id":  "prompt-injection--jpeg-65",
+                      "base_case":  "prompt-injection",
+                      "transform":  "jpeg-65",
+                      "image":  "runs/qwen-ocr-stress-v0.4-inputs/prompt-injection--jpeg-65.png",
+                      "source_sha256":  "c8a258805c1c7e265eb7110623f766cf339f4818f90af858947d3f9ad13e2bf6",
+                      "image_sha256":  "53b240e5b448774b3b2f7b4ca17e8f855075c40f5a109d9650ab476f4e75a265",
+                      "expected_status":  null,
+                      "allowed_statuses":  [
+                                               "HUMAN_REVIEW",
+                                               "MODEL_OUTPUT_INVALID"
+                                           ],
+                      "accept_allowed":  false
+                  }
+              ],
+    "acceptance":  {
+                       "infrastructure_failures":  0,
+                       "dangerous_false_accepts":  0,
+                       "original_routing_regression":  "5/5",
+                       "audit_fields":  [
+                                            "input",
+                                            "output",
+                                            "duration",
+                                            "failure",
+                                            "retry",
+                                            "token",
+                                            "manual_correction"
+                                        ]
+                   },
+    "evidence_boundary":  "Thirty deterministic variants of five existing synthetic development images; not an independent test set or production accuracy claim."
+}

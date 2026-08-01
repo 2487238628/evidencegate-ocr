@@ -1,0 +1,22 @@
+{
+  "run_id": "QWEN-OCR-V0.4-ROTATED-CROP-REPLAY-001",
+  "input": {
+    "source_record": "runs/qwen-ocr-stress-v0.4/right-crop--rotate-90-record.json",
+    "source_record_sha256": "246b2eea5a2973d0ef81628755308eb123b8995683a3c837e5e924be45295800",
+    "image_sha256": "76cb58af342b7ca5ea056e0f22ed94e86b0b31018ff0b4a6cf3e61ab318b701a",
+    "model_request_id": "887aa204-2608-9a6d-b168-591d7c35dda7"
+  },
+  "output": {
+    "before_status": "ACCEPT_CANDIDATE",
+    "after_status": "HUMAN_REVIEW",
+    "codes": [
+      "RULE_ALIGNED_RIGHT_EDGES"
+    ]
+  },
+  "duration_ms": 19.6091,
+  "model_calls": 0,
+  "retries": 0,
+  "failures": 0,
+  "manual_corrections": 0,
+  "evidence_boundary": "Replays one preserved real qwen3.5-ocr response through the corrected deterministic gate; no model call and no accuracy claim."
+}

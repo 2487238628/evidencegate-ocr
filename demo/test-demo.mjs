@@ -5,7 +5,7 @@ const server = createServer();
 await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
 try {
   const base = `http://127.0.0.1:${server.address().port}`;
-  const response = await fetch(`${base}/api/scenarios`);
+  const response = await fetch(`${base}/scenarios.json`);
   const scenarios = await response.json();
   assert.equal(response.status, 200);
   assert.deepEqual(scenarios.map((item) => item.output.status), ["ACCEPT_CANDIDATE", "HUMAN_REVIEW", "HUMAN_REVIEW"]);

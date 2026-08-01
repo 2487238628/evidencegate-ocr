@@ -46,7 +46,7 @@ for (const testCase of testSet.cases) {
 const failed = results.filter((item) => !item.passed);
 const report = {
   test_set_id: testSet.test_set_id,
-  gate_version: "0.4.0",
+  gate_version: "0.4.1",
   test_set_sha256: crypto.createHash("sha256").update(JSON.stringify(testSet)).digest("hex"),
   input_cases: results.length,
   output_results: results.length,

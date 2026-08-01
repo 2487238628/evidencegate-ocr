@@ -1,0 +1,31 @@
+{
+  "run_id": "QWEN-OCR-V0.4-STRESS-VALIDATION-001",
+  "inputs": {
+    "baseline": ["npm test", "verify-release.ps1"],
+    "final": ["npm test", "verify-release.ps1"],
+    "stress_summary": "evidence/qwen-ocr-stress-v0.4-final.json"
+  },
+  "outputs": {
+    "baseline": {
+      "npm_test_exit_code": 0,
+      "npm_test_duration_ms": 3423.162,
+      "verify_exit_code": 0,
+      "verify_duration_ms": 1168.347
+    },
+    "final": {
+      "npm_test_exit_code": 0,
+      "npm_test_duration_ms": 4478.579,
+      "verify_exit_code": 0,
+      "verify_duration_ms": 1603.617,
+      "required_files": 54,
+      "gate_cases": "20/20",
+      "adversarial_cases": "30/30",
+      "stress_cases": "30/30",
+      "stress_dangerous_false_accepts": 0,
+      "secret_scan": "PASS"
+    }
+  },
+  "failures": 0,
+  "manual_corrections": 0,
+  "evidence_boundary": "Validation proves deterministic and synthetic development checks only; it does not prove production accuracy or SLA."
+}

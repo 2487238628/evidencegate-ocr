@@ -89,9 +89,11 @@ export function evaluate({ candidateText, schema, expected = null }) {
         business.push(issue("RULE_FIELDS_NOT_EQUAL", `${rule.left} and ${rule.right} must differ.`, rule.right));
       }
     } else if (rule.kind === "aligned_right_edges_review") {
-      const edges = (rule.fields ?? [])
-        .map((field) => result.fields[field]?.locator?.bbox?.[2])
-        .filter(Number.isFinite);
+      const boxes = (rule.fields ?? [])
+        .map((field) => result.fields[field]?.locator?.bbox)
+        .filter((bbox) => Array.isArray(bbox) && bbox.length === 4);
+      const vertical = boxes.filter((bbox) => bbox[3] - bbox[1] > bbox[2] - bbox[0]).length >= (rule.minimum ?? 3);
+      const edges = boxes.map((bbox) => bbox[vertical ? 3 : 2]).filter(Number.isFinite);
       const minimum = rule.minimum ?? 3;
       const tolerance = rule.tolerance ?? 0.002;
       const aligned = edges.some((edge) =>
@@ -121,7 +123,7 @@ export function evaluate({ candidateText, schema, expected = null }) {
     : result.business_rule_errors.length || result.expected_mismatches.length
       ? "HUMAN_REVIEW"
       : "ACCEPT_CANDIDATE";
-  result.gate_version = "0.4.0";
+  result.gate_version = "0.4.1";
   result.validator_duration_ms = Number(process.hrtime.bigint() - started) / 1e6;
   return result;
 }

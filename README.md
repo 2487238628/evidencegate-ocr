@@ -27,7 +27,7 @@ The gate contract is provider-independent. Alibaba Cloud Model Studio is the liv
 
 ## Road to v0.5.0
 
-The public stable release remains `v0.4.0`. A `v0.5.0-rc1` tag will require an independent, host-agnostic blind evaluation rather than another score produced by the implementation team.
+The public stable release is `v0.4.1`. A `v0.5.0-rc1` tag will require an independent, host-agnostic blind evaluation rather than another score produced by the implementation team.
 
 The frozen protocol requires 20 SHA-256-bound document images to be labeled before any prediction is shown, the gold file to be sealed before one frozen prediction run, and all three release gates to pass:
 
@@ -65,6 +65,12 @@ The red-pixel rule is deliberately narrow. It is a conservative review signal fo
 
 Raw responses, request IDs, Token usage, durations, field envelopes, gate outputs, and five failed development attempts are under `runs/qwen-ocr-v0.4*`.
 
+### 30-image development stress run
+
+Five existing synthetic images were expanded into 30 deterministic original, downscaled, rotated, cropped, masked, and JPEG-roundtrip inputs. The final replay reported routing 30/30, dangerous false accepts 0, exact fields 233/270, and locators 266/270 across 30 unique real `qwen3.5-ocr` outputs. The selected run used 71,259 Token; including a stopped seven-failure local PNG attempt, the full goal used 87,950 Token. Business-data manual corrections remained 0. See [the complete audit](evidence/qwen-ocr-stress-v0.4-report.md).
+
+`v0.4.1` also fixes the shared crop rule for 90-degree OCR coordinates. A preserved real response that was previously accepted with only 5/9 exact fields now routes to `HUMAN_REVIEW / RULE_ALIGNED_RIGHT_EDGES` without another model call. Run `node replay-qwen-stress.mjs` to replay all 30 compact, hash-bound outputs in a clean clone without calling the model.
+
 ## Why the final path does not use KIE for business state
 
 The first attempts exposed two real integration failures:
@@ -80,12 +86,13 @@ The rows below have different units and must not be added into one sample count.
 
 | Layer | Unit | Result | Boundary |
 |---|---|---:|---|
-| Contract regression | structured candidates | 19/19 | Parser, schema, locator, and rule logic |
+| Contract regression | structured candidates | 20/20 | Parser, schema, locator, and rule logic |
 | Locator regression | positioned-word fixtures | 9/9 | Normalization and evidence matching |
 | Red-overlay development check | synthetic PNG images | 2/2 | Narrow signal, not stamp accuracy |
 | Deterministic adversarial routing | structured candidates | 30/30 | Gate routing, not OCR accuracy |
 | Arts-event portability | synthetic candidates | 12/12 | Routing portability, not event truth |
 | Qwen-OCR live development | synthetic images | routes 5/5; fields 41/45; locators 45/45 | Reused development set, not held out |
+| Qwen-OCR development stress | transformed synthetic images | routes 30/30; dangerous false accepts 0; fields 233/270; locators 266/270 | Reused development material, not held out |
 | Human-correction replay | correction events | 3/3 | Project evaluator, not independent users |
 
 This evidence does not establish production OCR accuracy, independent generalization, SLA, ROI, fraud detection, or autonomous approval safety.

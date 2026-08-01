@@ -2,7 +2,14 @@ $ErrorActionPreference = 'Stop'
 
 $required = @(
   'README.md', 'README.zh-CN.md', 'LICENSE', 'SECURITY.md', 'CONTRIBUTING.md', 'package.json',
-  'RELEASE-NOTES-v0.4.0.md',
+  'RELEASE-NOTES-v0.4.0.md', 'RELEASE-NOTES-v0.4.1.md',
+  'build-ocr-stress-suite.ps1', 'replay-qwen-stress.mjs', 'docs\ocr-stress-protocol-v0.4.md',
+  'tests\qwen-ocr-stress-suite-v0.4.json',
+  'evidence\qwen-ocr-stress-v0.4-final.json', 'evidence\qwen-ocr-stress-v0.4-replay-inputs.json',
+  'evidence\qwen-ocr-stress-v0.4-failed-attempt.json', 'evidence\qwen-ocr-stress-v0.4-validation.json',
+  'evidence\qwen-ocr-stress-suite-pre-policy-correction.json',
+  'evidence\qwen-ocr-rotated-crop-replay-v0.4.json',
+  'evidence\qwen-ocr-stress-v0.4-report.md',
   'evidence-schema.json', 'evidence-gate-base.mjs', 'evidence-gate.mjs', 'evidence-gate-cli.mjs',
   'evidence-locator.mjs', 'png-visual-signal.mjs', 'qwen-ocr-locator-run.mjs',
   'test-gate.mjs', 'test-locator.mjs', 'test-png-signal.mjs',
@@ -33,6 +40,9 @@ foreach ($name in $required) {
   }
 }
 
+$package = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'package.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+if ($package.version -ne '0.4.1') { throw 'Package version is not 0.4.1.' }
+
 $node = (Get-Command node -ErrorAction Stop).Source
 $gate = (& $node (Join-Path $PSScriptRoot 'test-gate.mjs')) -join "`n" | ConvertFrom-Json
 $locator = (& $node (Join-Path $PSScriptRoot 'test-locator.mjs')) -join "`n" | ConvertFrom-Json
@@ -45,7 +55,7 @@ $quickStart = (& $node (Join-Path $PSScriptRoot 'evidence-gate-cli.mjs') `
   --schema (Join-Path $PSScriptRoot 'examples\procurement-invoice\schema.json') `
   --expected (Join-Path $PSScriptRoot 'examples\procurement-invoice\expected.json')) -join "`n" | ConvertFrom-Json
 
-if ($gate.input_cases -ne 19 -or $gate.failed -ne 0) { throw 'Gate regression failed.' }
+if ($gate.input_cases -ne 20 -or $gate.failed -ne 0) { throw 'Gate regression failed.' }
 if ($locator.input_cases -ne 9 -or $locator.failed -ne 0) { throw 'Locator regression failed.' }
 if ($visual.input_cases -ne 2 -or $visual.failed -ne 0) { throw 'Visual-signal development check failed.' }
 if ($adversarial.input_cases -ne 30 -or $adversarial.routing_failed -ne 0) { throw 'Adversarial routing failed.' }
@@ -64,6 +74,19 @@ if ($live.routing_passed -ne 5 -or $live.routing_total -ne 5) { throw 'Live rout
 if ($live.exact_fields_passed -ne 41 -or $live.exact_fields_total -ne 45) { throw 'Live field metrics drifted.' }
 if ($live.locator_fields_passed -ne 45 -or $live.locator_fields_total -ne 45) { throw 'Live locator metrics failed.' }
 if ($live.failures -ne 0 -or $live.manual_corrections -ne 0) { throw 'Live failure/correction counts failed.' }
+
+$stress = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'evidence\qwen-ocr-stress-v0.4-final.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+if ($stress.inputs -ne 30 -or $stress.outputs -ne 30 -or $stress.model_calls -ne 30) { throw 'OCR stress counts failed.' }
+if ($stress.routing_passed -ne 30 -or $stress.routing_total -ne 30) { throw 'OCR stress routing failed.' }
+if ($stress.dangerous_false_accepts -ne 0 -or $stress.failures -ne 0) { throw 'OCR stress safety gate failed.' }
+if ($stress.original_routing_passed -ne 5 -or $stress.original_routing_total -ne 5) { throw 'OCR original routing regression failed.' }
+if ($stress.business_data_manual_corrections -ne 0 -or $stress.full_goal_usage.total_tokens -gt $stress.full_goal_usage.budget_tokens) {
+  throw 'OCR stress correction or token budget failed.'
+}
+$rotatedCrop = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'evidence\qwen-ocr-rotated-crop-replay-v0.4.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+if ($rotatedCrop.output.before_status -ne 'ACCEPT_CANDIDATE' -or $rotatedCrop.output.after_status -ne 'HUMAN_REVIEW') {
+  throw 'Rotated crop replay failed.'
+}
 
 $frozenAdversarial = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'adversarial-eval-v0.2-results.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($frozenAdversarial.test_set_sha256 -ne $adversarial.test_set_sha256) { throw 'Adversarial test hash drifted.' }
@@ -101,7 +124,7 @@ foreach ($file in $textFiles) {
 
 [ordered]@{
   status = 'PASS'
-  release = 'v0.4.0'
+  release = 'v0.4.1'
   required_files = $required.Count
   gate_cases = $gate.input_cases
   locator_cases = $locator.input_cases
@@ -114,6 +137,11 @@ foreach ($file in $textFiles) {
   live_locators = "$($live.locator_fields_passed)/$($live.locator_fields_total)"
   live_failures = $live.failures
   live_manual_corrections = $live.manual_corrections
+  stress_cases = $stress.inputs
+  stress_routing = "$($stress.routing_passed)/$($stress.routing_total)"
+  stress_dangerous_false_accepts = $stress.dangerous_false_accepts
+  stress_total_tokens = $stress.total_tokens
+  stress_full_goal_tokens = $stress.full_goal_usage.total_tokens
   human_correction_replay = $corrections.applied_corrections
   skill_contract = 'PASS'
   secret_scan = 'PASS'

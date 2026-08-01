@@ -94,7 +94,9 @@ flowchart LR
 
 需要 Node.js 20 或更高版本。确定性测试不需要安装依赖，也不需要 API Key。
 
-评委交互演示复用真实 `evaluate` 导出，包含正常、右侧裁切和文档内提示词三种冻结场景：\n\n在线体验：<https://endtree-fde.github.io/evidencegate-ocr/>
+评委交互演示复用真实 `evaluate` 导出，包含正常、右侧裁切和文档内提示词三种冻结场景：
+
+在线体验：<https://endtree-fde.github.io/evidencegate-ocr/>
 
 ```powershell
 node demo/server.mjs

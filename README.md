@@ -94,7 +94,9 @@ This evidence does not establish production OCR accuracy, independent generaliza
 
 Prerequisite: Node.js 20 or newer. The deterministic checks need no dependency installation or API key.
 
-The judge demo calls the real `evaluate` export and replays the clean, right-crop, and document-instruction evidence scenarios:\n\nLive demo: <https://endtree-fde.github.io/evidencegate-ocr/>
+The judge demo calls the real `evaluate` export and replays the clean, right-crop, and document-instruction evidence scenarios:
+
+Live demo: <https://endtree-fde.github.io/evidencegate-ocr/>
 
 ```powershell
 node demo/server.mjs

@@ -67,7 +67,8 @@ function send(response, status, body, type = "application/json; charset=utf-8") 
   response.end(body);
 }
 function staticFile(urlPath) {
-  const relative = urlPath === "/" ? "demo/index.html" : urlPath.replace(/^\//, "");
+  const demoAsset = ["/app.js", "/styles.css"].includes(urlPath);
+  const relative = urlPath === "/" ? "demo/index.html" : demoAsset ? `demo/${urlPath.slice(1)}` : urlPath.replace(/^\//, "");
   const absolute = path.resolve(root, relative);
   const allowed = absolute.startsWith(`${demoRoot}${path.sep}`) || absolute.startsWith(`${path.join(root, "samples", "images")}${path.sep}`);
   return allowed ? absolute : null;
@@ -76,7 +77,7 @@ export function createServer() {
   return http.createServer((request, response) => {
     const url = new URL(request.url, "http://localhost");
     if (url.pathname === "/health") return send(response, 200, JSON.stringify({ status: "ok", version: "0.4.0" }));
-    if (url.pathname === "/api/scenarios") return send(response, 200, JSON.stringify(Object.keys(scenarios).map((id) => buildScenario(id))));
+    if (url.pathname === "/api/scenarios" || url.pathname === "/scenarios.json") return send(response, 200, JSON.stringify(Object.keys(scenarios).map((id) => buildScenario(id))));
     const file = staticFile(url.pathname);
     if (!file || !fs.existsSync(file) || !fs.statSync(file).isFile()) return send(response, 404, JSON.stringify({ error: "NOT_FOUND" }));
     return send(response, 200, fs.readFileSync(file), contentTypes[path.extname(file)] ?? "application/octet-stream");

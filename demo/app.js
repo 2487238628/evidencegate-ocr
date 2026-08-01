@@ -50,7 +50,7 @@ function render(scenario) {
 }
 
 try {
-  const response = await fetch("/api/scenarios");
+  const response = await fetch("./scenarios.json");
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const scenarios = await response.json();
   scenarios.forEach((scenario) => {

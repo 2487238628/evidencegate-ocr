@@ -47,13 +47,15 @@ flowchart LR
 
 ## 可运行演示
 
+在线体验：<https://endtree-fde.github.io/evidencegate-ocr/>
+
 ```powershell
 git clone https://github.com/endtree-FDE/evidencegate-ocr.git
 cd evidencegate-ocr
 node demo/server.mjs
 ```
 
-打开 `http://127.0.0.1:4173/`。演示提供三个真实开发记录回放：
+打开 `http://127.0.0.1:4173/`。在线版与本地版提供相同的三个真实开发记录回放：
 
 1. 证据完整：字段、金额关系和定位均未发现已知冲突；
 2. 右侧裁切：4 个字段虽然有文本，但同时终止于同一切线，转人工重新取证；

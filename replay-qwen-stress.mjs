@@ -4,6 +4,7 @@ import { evaluate } from "./evidence-gate.mjs";
 
 const read = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
 const sha = (value) => crypto.createHash("sha256").update(value).digest("hex");
+const trackedSha = (bytes) => sha(Buffer.from(bytes.toString("utf8").replaceAll("\r\n", "\n"), "utf8"));
 const suiteBytes = fs.readFileSync("tests/qwen-ocr-stress-suite-v0.4.json");
 const schemaBytes = fs.readFileSync("examples/procurement-invoice/schema-v0.4.0.json");
 const expectedBytes = fs.readFileSync("examples/procurement-invoice/expected-v0.2.0.json");
@@ -14,9 +15,10 @@ const expected = JSON.parse(expectedBytes);
 const frozen = read("evidence/qwen-ocr-stress-v0.4-final.json");
 const started = process.hrtime.bigint();
 
-if (sha(suiteBytes) !== fixture.suite_sha256) throw new Error("Suite hash drift.");
-if (sha(schemaBytes) !== fixture.schema_sha256) throw new Error("Schema hash drift.");
-if (sha(expectedBytes) !== fixture.expected_sha256) throw new Error("Expected-fields hash drift.");
+if (fixture.source_suite_sha256 !== frozen.suite_sha256) throw new Error("Source-run suite hash drift.");
+if (trackedSha(suiteBytes) !== fixture.public_suite_sha256) throw new Error("Public suite hash drift.");
+if (trackedSha(schemaBytes) !== fixture.public_schema_sha256) throw new Error("Public schema hash drift.");
+if (trackedSha(expectedBytes) !== fixture.public_expected_sha256) throw new Error("Public expected-fields hash drift.");
 if (fixture.records.length !== suite.cases.length) throw new Error("Replay record count drift.");
 
 const cases = new Map(suite.cases.map((item) => [item.id, item]));

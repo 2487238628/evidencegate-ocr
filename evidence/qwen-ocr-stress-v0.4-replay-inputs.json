@@ -3,9 +3,6 @@
   "provider": "Alibaba Cloud Model Studio",
   "model": "qwen3.5-ocr",
   "source_run_id": "QWEN-OCR-V0.4-STRESS-FINAL-001",
-  "suite_sha256": "314783b9da1ef0e39eb89eb9e812972c99401156aea02c6d4091e30d67961afd",
-  "schema_sha256": "8fc58ff39372f579991919f5e51bbd433e265866cac4b40a6450de424b503142",
-  "expected_sha256": "79d5aa3d73c27c791c89662fa8d6a05ea789c483b7a2b08754128fae6fb2a5e8",
   "records": [
     {
       "id": "clean--original",
@@ -5139,5 +5136,9 @@
     }
   ],
   "manual_corrections": 0,
-  "evidence_boundary": "Compact replay inputs derived from 30 real qwen3.5-ocr development records. They reproduce gate routing without a model call; they do not prove independent or production accuracy."
+  "evidence_boundary": "Compact replay inputs derived from 30 real qwen3.5-ocr development records. They reproduce gate routing without a model call; they do not prove independent or production accuracy.",
+  "source_suite_sha256": "314783b9da1ef0e39eb89eb9e812972c99401156aea02c6d4091e30d67961afd",
+  "public_suite_sha256": "031759e8fbdee3055eeb300711d48cb1c7681e9bbbfb70ce7847ea27456633c6",
+  "public_schema_sha256": "c63f6b3ac7d784e6c80ae9837f112c350c3f2bf2ab4c51fd4fb91ab9981a3c44",
+  "public_expected_sha256": "c32488d4677d825e4609af93307985b6dde675f5768ff0d6c5fa2ab971a0504b"
 }

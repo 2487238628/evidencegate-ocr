@@ -35,6 +35,8 @@ The failed attempt is retained: after 8 calls, one output completed and seven lo
 - secret scan: PASS;
 - `human_required=true` and `erp_write_allowed=false` remain unchanged.
 
+The first GitHub Actions run failed on both Windows and Ubuntu because the replay compared a source-run CRLF byte hash with Git-normalized LF blobs. The correction preserves the original source-run hash and validates separate public Git-object hashes. Model outputs and business data were not changed.
+
 ## Boundary
 
 The 30 inputs are deterministic transformations of reused synthetic development material, not an independent holdout. This release does not establish production OCR accuracy, independent generalization, SLA, ROI, fraud detection, or autonomous approval safety. `v0.5.0-rc1` remains blocked on an independently sealed gold set and one frozen prediction run.

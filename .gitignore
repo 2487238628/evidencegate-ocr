@@ -7,4 +7,4 @@ runs/*
 synthetic-fixture-spec.json
 generation-prompt.txt
 bailian-run-001.json
-demo/dist/\n
+demo/dist/

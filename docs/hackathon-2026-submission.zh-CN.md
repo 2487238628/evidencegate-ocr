@@ -45,7 +45,9 @@ flowchart LR
 - 旁白调用只服务于参赛演示制作，不参与 EvidenceGate 的业务路由；请求号、输入/输出哈希见 `evidence/hackathon-bailian-tts-run-2026-08-01.json`；
 - API Key 只从环境变量读取，不进入源码、日志或公开运行文件。
 
-## 可运行演示\n\n在线体验：<https://endtree-fde.github.io/evidencegate-ocr/>
+## 可运行演示
+
+在线体验：<https://endtree-fde.github.io/evidencegate-ocr/>
 
 ```powershell
 git clone https://github.com/endtree-FDE/evidencegate-ocr.git
